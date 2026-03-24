@@ -24,6 +24,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: scripts/requirements.txt
 
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
@@ -36,12 +38,12 @@ jobs:
           FEED_BASE_URL:           ${{ secrets.FEED_BASE_URL }}
         run: python scripts/process_newsletters.py
 
-      - name: Commit processed_ids state
+      - name: Commit processed_ids state and feed
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add scripts/processed_ids.json
-          git diff --cached --quiet || git commit -m "chore: update processed email state [skip ci]"
+          git add scripts/processed_ids.json docs/feed.xml
+          git diff --cached --quiet || git commit -m "chore: update digest state and feed [skip ci]"
           git push
 
       - name: Deploy RSS feed to GitHub Pages
