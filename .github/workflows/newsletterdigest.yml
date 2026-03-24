@@ -1,0 +1,54 @@
+name: Newsletter Digest
+
+on:
+  schedule:
+    # Runs at 07:00 UTC daily = ~3:00 AM ET (adjusts for DST automatically)
+    - cron: "0 7 * * *"
+  workflow_dispatch:   # Allow manual trigger from GitHub UI
+
+permissions:
+  contents: write      # Needed to commit rss.xml back to repo
+
+jobs:
+  process:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch gh-pages branch too so we can publish there
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Run newsletter processor
+        env:
+          ANTHROPIC_API_KEY:       ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_CREDENTIALS_JSON:  ${{ secrets.GMAIL_CREDENTIALS_JSON }}
+          GMAIL_TOKEN_JSON:        ${{ secrets.GMAIL_TOKEN_JSON }}
+          FEED_BASE_URL:           ${{ secrets.FEED_BASE_URL }}
+        run: python scripts/process_newsletters.py
+
+      - name: Commit processed_ids state
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add scripts/processed_ids.json
+          git diff --cached --quiet || git commit -m "chore: update processed email state [skip ci]"
+          git push
+
+      - name: Deploy RSS feed to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir:  ./docs
+          publish_branch: gh-pages
+          keep_files:   true        # Don't wipe other files on gh-pages
+          commit_message: "deploy: update RSS feed [skip ci]"
