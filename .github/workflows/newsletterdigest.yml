@@ -7,7 +7,7 @@ on:
   workflow_dispatch:   # Allow manual trigger from GitHub UI
 
 permissions:
-  contents: write      # Needed to commit rss.xml back to repo
+  contents: write      # Needed to commit state + feed back to repo
 
 jobs:
   process:
@@ -17,15 +17,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # Fetch gh-pages branch too so we can publish there
           fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          cache: "pip"
-          cache-dependency-path: scripts/requirements.txt
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('scripts/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
@@ -52,5 +57,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir:  ./docs
           publish_branch: gh-pages
-          keep_files:   true        # Don't wipe other files on gh-pages
+          keep_files:   true
           commit_message: "deploy: update RSS feed [skip ci]"
