@@ -162,11 +162,13 @@ Your job:
    {"items": []}
 4. Otherwise, identify ALL distinct subjects/news items — even if there are many.
    For each item produce a JSON object with these exact keys:
-   - "summary":  2-5 sentences capturing key points and key facts. Be specific — include numbers, names, dates where present.
+   - "executive_summary": 2-4 sentences giving a high-level overview of the item — what happened and why it matters.
+   - "key_facts": an array of 2-6 specific factual statements mentioned in the item (numbers, names, dates, data points). Each entry is a short sentence.
+   - "opinion_or_thesis": 1-3 sentences capturing any opinion, editorial stance, or thesis the author expresses. If the item is purely factual with no opinion, write "None expressed."
    - "keywords": array of 3-8 concise keyword strings relevant to this item.
-   
+
    Respond ONLY with valid JSON, no markdown fences, no preamble.
-   Schema: {"items": [ {"summary": "...", "keywords": ["...", ...]}, ... ]}
+   Schema: {"items": [ {"executive_summary": "...", "key_facts": ["...", ...], "opinion_or_thesis": "...", "keywords": ["...", ...]}, ... ]}
 
 Rules:
 - If an email mixes ads and real content, extract the real content and ignore the ads.
@@ -222,6 +224,19 @@ def summarise_with_haiku(email: dict) -> list[dict]:
             items = []
 
     return items
+
+
+def _compose_summary(executive_summary: str, key_facts: list[str], opinion: str) -> str:
+    """Compose a plain-text summary from the three structured sections."""
+    parts = []
+    if executive_summary:
+        parts.append(f"Executive Summary: {executive_summary}")
+    if key_facts:
+        facts_str = " ".join(f"• {f}" for f in key_facts)
+        parts.append(f"Key Facts: {facts_str}")
+    if opinion and opinion.lower() != "none expressed.":
+        parts.append(f"Opinion/Thesis: {opinion}")
+    return "\n\n".join(parts) if parts else ""
 
 
 # ── RSS builder ───────────────────────────────────────────────────────────────
@@ -321,12 +336,40 @@ def build_digest_html(new_entries: list[dict], run_date: datetime) -> str:
                 for kw in e.get("keywords", [])
             )
             subject_display = html_module.escape(e["subject"])
-            summary_display = html_module.escape(e["summary"])
+
+            # Build structured summary HTML from the three sections
+            exec_sum = e.get("executive_summary", "")
+            key_facts = e.get("key_facts", [])
+            opinion = e.get("opinion_or_thesis", "")
+            # Fallback: if no structured fields, use plain summary
+            if not exec_sum and not key_facts:
+                summary_html = f'<div style="color:#444;line-height:1.6;font-size:14px;">{html_module.escape(e.get("summary", ""))}</div>'
+            else:
+                summary_parts = []
+                if exec_sum:
+                    summary_parts.append(
+                        f'<div style="color:#444;line-height:1.6;font-size:14px;margin-bottom:8px;">'
+                        f'<strong style="color:#1a1a1a;">Summary:</strong> {html_module.escape(exec_sum)}</div>'
+                    )
+                if key_facts:
+                    facts_li = "".join(f"<li>{html_module.escape(f)}</li>" for f in key_facts)
+                    summary_parts.append(
+                        f'<div style="margin-bottom:8px;">'
+                        f'<strong style="color:#1a1a1a;font-size:13px;">Key Facts:</strong>'
+                        f'<ul style="margin:4px 0 0 0;padding-left:18px;color:#444;font-size:14px;line-height:1.6;">{facts_li}</ul></div>'
+                    )
+                if opinion and opinion.lower() != "none expressed.":
+                    summary_parts.append(
+                        f'<div style="color:#666;line-height:1.6;font-size:13px;font-style:italic;'
+                        f'border-left:3px solid #d0d0d0;padding-left:10px;margin-top:4px;">'
+                        f'<strong style="font-style:normal;color:#555;">Opinion/Thesis:</strong> {html_module.escape(opinion)}</div>'
+                    )
+                summary_html = "\n".join(summary_parts)
 
             items_html += f"""
             <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #f0f0f0;">
               <div style="font-weight:600;color:#1a1a1a;margin-bottom:6px;">{subject_display}</div>
-              <div style="color:#444;line-height:1.6;font-size:14px;">{summary_display}</div>
+              {summary_html}
               <div style="margin-top:8px;">{keywords_html}</div>
             </div>"""
 
@@ -465,11 +508,22 @@ def main():
                 pub_date = email["date"].strftime("%a, %d %b %Y %H:%M:%S +0000")
 
                 for i, item in enumerate(items):
+                    # Build structured summary from the three sections
+                    exec_summary = item.get("executive_summary", "")
+                    key_facts = item.get("key_facts", [])
+                    opinion = item.get("opinion_or_thesis", "")
+                    # Fallback for legacy "summary" field (e.g. from older cached data)
+                    if not exec_summary and "summary" in item:
+                        exec_summary = item["summary"]
+
                     entry = {
                         "subject":  email["subject"] if len(items) == 1 else f"{email['subject']} [{i+1}/{len(items)}]",
                         "sender":   email["sender"],
                         "date":     pub_date,
-                        "summary":  item.get("summary", ""),
+                        "executive_summary": exec_summary,
+                        "key_facts": key_facts,
+                        "opinion_or_thesis": opinion,
+                        "summary":  _compose_summary(exec_summary, key_facts, opinion),
                         "keywords": item.get("keywords", []),
                         "guid":     f"{msg_id}-{i}",
                         "link":     FEED_LINK,
