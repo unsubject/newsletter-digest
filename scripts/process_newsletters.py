@@ -182,6 +182,18 @@ Produce a JSON object with these exact keys:
      Include 2-6 items per theme.
    - "connections": (optional) 1-2 sentences noting how this theme links to
      another theme in this digest, if applicable. Omit if no connection exists.
+   - "cross_coverage": (include ONLY when 2+ newsletters cover the same
+     subject) An object with:
+       - "perspectives": An array of objects, each with "source" (newsletter
+         name) and "stance" (1-2 sentences describing that source's angle,
+         emphasis, or interpretation). Only describe what the source actually
+         wrote — never infer or fabricate a position.
+       - "mainstream_view": 1-2 sentences capturing the most widely shared or
+         conventional take across the sources.
+       - "contrarian_angle": 1-2 sentences capturing any notably different or
+         dissenting view, if one exists. If all sources broadly agree, set this
+         to null.
+     Omit "cross_coverage" entirely if only one source covers the theme.
 
    Aim for 3-7 themes. A single email can contribute to multiple themes.
 
@@ -200,7 +212,12 @@ Schema:
       "facts": [
         {"statement": "...", "source": "...", "type": "fact|interpretation"}
       ],
-      "connections": "..."
+      "connections": "...",
+      "cross_coverage": {
+        "perspectives": [{"source": "...", "stance": "..."}],
+        "mainstream_view": "...",
+        "contrarian_angle": "..." or null
+      }
     }
   ],
   "keywords": [{"keyword": "...", "count": N}, ...]
@@ -212,6 +229,10 @@ Rules:
 - Merge and deduplicate overlapping coverage across newsletters.
 - Clearly distinguish hard facts from opinions/interpretations via the "type" field.
 - Attribute every fact or interpretation to its source newsletter.
+- For cross_coverage: ONLY describe perspectives that are explicitly stated in
+  the provided emails. Do not infer, speculate, or hallucinate positions. If
+  you are unsure whether a source expressed a particular view, do not include it.
+  Double-check each "stance" against the actual email content before including it.
 """
 
 
@@ -283,6 +304,19 @@ def _compose_summary(themes: list[dict], keywords: list[dict]) -> str:
                 tag = "[fact]" if f.get("type") == "fact" else "[interpretation]"
                 lines.append(f"  • {tag} {f.get('statement', '')} — {f.get('source', '')}")
             section += "\n" + "\n".join(lines)
+        cross = t.get("cross_coverage")
+        if cross:
+            perspectives = cross.get("perspectives", [])
+            if perspectives:
+                section += "\n  Multi-Source Analysis:"
+                for p in perspectives:
+                    section += f"\n    - {p.get('source', '')}: {p.get('stance', '')}"
+            mainstream = cross.get("mainstream_view", "")
+            if mainstream:
+                section += f"\n  Mainstream view: {mainstream}"
+            contrarian = cross.get("contrarian_angle")
+            if contrarian:
+                section += f"\n  Contrarian angle: {contrarian}"
         conn = t.get("connections")
         if conn:
             section += f"\n  ↳ {conn}"
@@ -421,11 +455,54 @@ def build_digest_html(digest: dict, sources: list[str], run_date: datetime) -> s
                 f'↳ {html_module.escape(conn)}</div>'
             )
 
+        # Cross-coverage analysis (only when multiple sources cover the same subject)
+        cross_html = ""
+        cross = t.get("cross_coverage")
+        if cross:
+            perspectives = cross.get("perspectives", [])
+            mainstream = cross.get("mainstream_view", "")
+            contrarian = cross.get("contrarian_angle")
+
+            persp_items = ""
+            for p in perspectives:
+                persp_items += (
+                    f'<div style="margin-bottom:6px;">'
+                    f'<span style="font-weight:600;color:#1a1a2e;font-size:12px;">'
+                    f'{html_module.escape(p.get("source", ""))}</span> '
+                    f'<span style="color:#555;font-size:13px;">{html_module.escape(p.get("stance", ""))}</span>'
+                    f'</div>'
+                )
+
+            views_html = ""
+            if mainstream:
+                views_html += (
+                    f'<div style="margin-top:8px;font-size:13px;line-height:1.5;">'
+                    f'<span style="font-weight:600;color:#2b7a4b;">Mainstream view:</span> '
+                    f'{html_module.escape(mainstream)}</div>'
+                )
+            if contrarian:
+                views_html += (
+                    f'<div style="margin-top:4px;font-size:13px;line-height:1.5;">'
+                    f'<span style="font-weight:600;color:#c0392b;">Contrarian angle:</span> '
+                    f'{html_module.escape(contrarian)}</div>'
+                )
+
+            cross_html = (
+                f'<div style="margin-top:12px;padding:12px 14px;background:#fdf8f0;'
+                f'border-radius:6px;border:1px solid #f0e6d2;">'
+                f'<div style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;'
+                f'color:#a08050;margin-bottom:8px;">Multi-Source Analysis</div>'
+                f'{persp_items}'
+                f'{views_html}'
+                f'</div>'
+            )
+
         themes_html += f"""
         <div style="margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid #eee;">
           <div style="font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:8px;">{theme_title}</div>
           <div style="color:#444;line-height:1.7;font-size:14px;">{summary}</div>
           {facts_block}
+          {cross_html}
           {connections_html}
         </div>"""
 
