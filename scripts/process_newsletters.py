@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
 Newsletter Digest Processor
-Fetches emails labelled "Subscription" from Gmail, summarises them with Claude Haiku,
-and generates/updates an RSS feed. Processed emails are sent to trash.
+Fetches emails labelled "Subscription" from Gmail, summarises them with Claude Sonnet
+into a single consolidated digest, and generates/updates an RSS feed.
+Processed emails are sent to trash.
 """
 
 import os
@@ -30,7 +31,7 @@ RSS_OUTPUT_DIR    = Path("docs")          # GitHub Pages serves from /docs on ma
 RSS_FILE          = RSS_OUTPUT_DIR / "feed.xml"
 STATE_FILE        = Path("scripts/processed_ids.json")
 FEED_TITLE        = "Simon's Newsletter Digest"
-FEED_DESCRIPTION  = "Auto-summarised newsletter entries, powered by Claude Haiku"
+FEED_DESCRIPTION  = "Auto-summarised newsletter digest, powered by Claude Sonnet"
 FEED_LINK         = os.environ.get("FEED_BASE_URL", "https://example.github.io/newsletter-digest")
 MAX_FEED_ITEMS    = 200   # Keep RSS manageable; oldest entries drop off
 
@@ -152,28 +153,40 @@ def trash_message(service, msg_id: str):
     service.users().messages().trash(userId="me", id=msg_id).execute()
 
 
-# ── Claude Haiku summariser ───────────────────────────────────────────────────
+# ── Claude Sonnet summariser ─────────────────────────────────────────────────
 SYSTEM_PROMPT = """You are a ruthlessly efficient newsletter analyst.
 
-Your job:
-1. Read the email body provided.
-2. Decide whether there is substantive content (news, analysis, insights, facts, announcements).
-3. If the email is purely promotional/advertising with zero informational value, respond with exactly:
-   {"items": []}
-4. Otherwise, identify ALL distinct subjects/news items — even if there are many.
-   For each item produce a JSON object with these exact keys:
-   - "executive_summary": 2-4 sentences giving a high-level overview of the item — what happened and why it matters.
-   - "key_facts": an array of 2-6 specific factual statements mentioned in the item (numbers, names, dates, data points). Each entry is a short sentence.
-   - "opinion_or_thesis": 1-3 sentences capturing any opinion, editorial stance, or thesis the author expresses. If the item is purely factual with no opinion, write "None expressed."
-   - "keywords": array of 3-8 concise keyword strings relevant to this item.
+You will receive the contents of multiple newsletter emails. Your job is to
+synthesise ALL of them into a single consolidated digest.
 
-   Respond ONLY with valid JSON, no markdown fences, no preamble.
-   Schema: {"items": [ {"executive_summary": "...", "key_facts": ["...", ...], "opinion_or_thesis": "...", "keywords": ["...", ...]}, ... ]}
+Produce a JSON object with these exact keys:
+
+1. "executive_summary": A cohesive overview (4-8 sentences) of the key issues,
+   themes, and developments across all the emails. Highlight connections between
+   topics where they exist.
+
+2. "key_facts": An array of 6-15 specific factual statements, data points, or
+   pieces of evidence extracted from across the emails (numbers, names, dates,
+   quotes). Each entry is a short sentence. Attribute facts to their source
+   newsletter where helpful.
+
+3. "keywords": An array of objects, each with "keyword" (string) and "count"
+   (integer) keys, ranked by how many distinct emails mention that topic.
+   Include 8-20 keywords. Be specific (e.g. "Federal Reserve rate cut" not
+   just "economy").
+
+Respond ONLY with valid JSON, no markdown fences, no preamble.
+Schema:
+{
+  "executive_summary": "...",
+  "key_facts": ["...", ...],
+  "keywords": [{"keyword": "...", "count": N}, ...]
+}
 
 Rules:
-- If an email mixes ads and real content, extract the real content and ignore the ads.
-- Do not invent facts. Only summarise what is explicitly in the email.
-- Keywords should be specific (e.g. "Federal Reserve rate cut" not just "economy").
+- Ignore purely promotional/advertising content with zero informational value.
+- Do not invent facts. Only summarise what is explicitly in the emails.
+- Merge and deduplicate overlapping coverage across newsletters.
 """
 
 
@@ -188,24 +201,30 @@ def get_anthropic_client() -> anthropic.Anthropic:
     return _anthropic_client
 
 
-def summarise_with_haiku(email: dict) -> list[dict]:
+def summarise_all_emails(emails: list[dict]) -> dict | None:
     """
-    Call Claude Haiku to summarise the email.
-    Returns a list of item dicts: [{summary, keywords}, ...]
-    Each item will later be enriched with sender/subject/date.
+    Call Claude Sonnet to produce a single consolidated summary of all emails.
+    Returns a dict with executive_summary, key_facts, and keywords,
+    or None if there is no substantive content.
     """
     client = get_anthropic_client()
 
-    user_content = (
-        f"From: {email['sender']}\n"
-        f"Subject: {email['subject']}\n"
-        f"Date: {email['date'].strftime('%Y-%m-%d %H:%M %Z')}\n\n"
-        f"--- EMAIL BODY ---\n{email['body']}"
-    )
+    # Build a single prompt with all emails
+    email_blocks = []
+    for i, email in enumerate(emails, 1):
+        email_blocks.append(
+            f"=== EMAIL {i} of {len(emails)} ===\n"
+            f"From: {email['sender']}\n"
+            f"Subject: {email['subject']}\n"
+            f"Date: {email['date'].strftime('%Y-%m-%d %H:%M %Z')}\n\n"
+            f"{email['body']}\n"
+        )
+
+    user_content = "\n".join(email_blocks)
 
     message = client.messages.create(
-        model      = "claude-haiku-4-5-20251001",
-        max_tokens = 2048,
+        model      = "claude-sonnet-4-5-20250514",
+        max_tokens = 4096,
         system     = SYSTEM_PROMPT,
         messages   = [{"role": "user", "content": user_content}],
     )
@@ -213,29 +232,31 @@ def summarise_with_haiku(email: dict) -> list[dict]:
     raw = message.content[0].text.strip()
 
     try:
-        data  = json.loads(raw)
-        items = data.get("items", [])
+        data = json.loads(raw)
     except json.JSONDecodeError:
-        # Defensive: try to find JSON block inside response
         match = re.search(r"\{.*\}", raw, re.DOTALL)
         if match:
-            items = json.loads(match.group()).get("items", [])
+            data = json.loads(match.group())
         else:
-            items = []
+            return None
 
-    return items
+    if not data.get("executive_summary") and not data.get("key_facts"):
+        return None
+
+    return data
 
 
-def _compose_summary(executive_summary: str, key_facts: list[str], opinion: str) -> str:
-    """Compose a plain-text summary from the three structured sections."""
+def _compose_summary(executive_summary: str, key_facts: list[str], keywords: list[dict]) -> str:
+    """Compose a plain-text summary from the structured sections."""
     parts = []
     if executive_summary:
         parts.append(f"Executive Summary: {executive_summary}")
     if key_facts:
         facts_str = " ".join(f"• {f}" for f in key_facts)
         parts.append(f"Key Facts: {facts_str}")
-    if opinion and opinion.lower() != "none expressed.":
-        parts.append(f"Opinion/Thesis: {opinion}")
+    if keywords:
+        kw_str = ", ".join(f"{k['keyword']} ({k['count']})" for k in keywords)
+        parts.append(f"Keywords: {kw_str}")
     return "\n\n".join(parts) if parts else ""
 
 
@@ -315,76 +336,62 @@ def build_rss(entries: list[dict]) -> str:
 
 
 # ── Digest email sender ───────────────────────────────────────────────────────
-def build_digest_html(new_entries: list[dict], run_date: datetime) -> str:
-    """Render new_entries as a styled HTML email body."""
+def build_digest_html(digest: dict, sources: list[str], run_date: datetime) -> str:
+    """Render the consolidated digest as a styled HTML email body."""
     date_str = run_date.strftime("%A, %d %B %Y")
 
-    # Group entries by original sender for cleaner layout
-    from collections import defaultdict
-    by_sender: dict[str, list[dict]] = defaultdict(list)
-    for e in new_entries:
-        by_sender[e["sender"]].append(e)
+    exec_sum = digest.get("executive_summary", "")
+    key_facts = digest.get("key_facts", [])
+    keywords = digest.get("keywords", [])
 
-    sections = ""
-    for sender, entries in by_sender.items():
-        items_html = ""
-        for e in entries:
-            keywords_html = "".join(
-                f'<span style="display:inline-block;background:#f0f4ff;color:#3b5bdb;'
-                f'border-radius:3px;padding:1px 7px;margin:2px 3px 2px 0;font-size:11px;">'
-                f'{html_module.escape(kw)}</span>'
-                for kw in e.get("keywords", [])
-            )
-            subject_display = html_module.escape(e["subject"])
+    # Executive summary section
+    summary_html = ""
+    if exec_sum:
+        summary_html = (
+            f'<div style="color:#444;line-height:1.7;font-size:14px;margin-bottom:20px;">'
+            f'{html_module.escape(exec_sum)}</div>'
+        )
 
-            # Build structured summary HTML from the three sections
-            exec_sum = e.get("executive_summary", "")
-            key_facts = e.get("key_facts", [])
-            opinion = e.get("opinion_or_thesis", "")
-            # Fallback: if no structured fields, use plain summary
-            if not exec_sum and not key_facts:
-                summary_html = f'<div style="color:#444;line-height:1.6;font-size:14px;">{html_module.escape(e.get("summary", ""))}</div>'
-            else:
-                summary_parts = []
-                if exec_sum:
-                    summary_parts.append(
-                        f'<div style="color:#444;line-height:1.6;font-size:14px;margin-bottom:8px;">'
-                        f'<strong style="color:#1a1a1a;">Summary:</strong> {html_module.escape(exec_sum)}</div>'
-                    )
-                if key_facts:
-                    facts_li = "".join(f"<li>{html_module.escape(f)}</li>" for f in key_facts)
-                    summary_parts.append(
-                        f'<div style="margin-bottom:8px;">'
-                        f'<strong style="color:#1a1a1a;font-size:13px;">Key Facts:</strong>'
-                        f'<ul style="margin:4px 0 0 0;padding-left:18px;color:#444;font-size:14px;line-height:1.6;">{facts_li}</ul></div>'
-                    )
-                if opinion and opinion.lower() != "none expressed.":
-                    summary_parts.append(
-                        f'<div style="color:#666;line-height:1.6;font-size:13px;font-style:italic;'
-                        f'border-left:3px solid #d0d0d0;padding-left:10px;margin-top:4px;">'
-                        f'<strong style="font-style:normal;color:#555;">Opinion/Thesis:</strong> {html_module.escape(opinion)}</div>'
-                    )
-                summary_html = "\n".join(summary_parts)
+    # Key facts section
+    facts_html = ""
+    if key_facts:
+        facts_li = "".join(f"<li>{html_module.escape(f)}</li>" for f in key_facts)
+        facts_html = (
+            f'<div style="margin-bottom:20px;">'
+            f'<div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;'
+            f'color:#888;margin-bottom:10px;">Key Facts &amp; Evidence</div>'
+            f'<ul style="margin:0;padding-left:18px;color:#444;font-size:14px;line-height:1.7;">{facts_li}</ul></div>'
+        )
 
-            items_html += f"""
-            <div style="margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #f0f0f0;">
-              <div style="font-weight:600;color:#1a1a1a;margin-bottom:6px;">{subject_display}</div>
-              {summary_html}
-              <div style="margin-top:8px;">{keywords_html}</div>
-            </div>"""
+    # Keywords section (ranked by occurrence)
+    keywords_html = ""
+    if keywords:
+        kw_badges = "".join(
+            f'<span style="display:inline-block;background:#f0f4ff;color:#3b5bdb;'
+            f'border-radius:3px;padding:2px 8px;margin:3px 4px 3px 0;font-size:12px;">'
+            f'{html_module.escape(k["keyword"])} '
+            f'<span style="color:#8b9fd4;font-size:10px;">({k["count"]})</span></span>'
+            for k in keywords
+        )
+        keywords_html = (
+            f'<div style="margin-bottom:20px;">'
+            f'<div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;'
+            f'color:#888;margin-bottom:10px;">Topics by Frequency</div>'
+            f'<div>{kw_badges}</div></div>'
+        )
 
-        sender_display = html_module.escape(sender)
-        sections += f"""
-        <div style="margin-bottom:32px;">
-          <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
-                      color:#888;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e8e8e8;">
-            {sender_display}
-          </div>
-          {items_html}
-        </div>"""
+    # Sources list
+    sources_html = ""
+    if sources:
+        src_items = "".join(f"<li>{html_module.escape(s)}</li>" for s in sources)
+        sources_html = (
+            f'<div style="margin-top:20px;padding-top:16px;border-top:1px solid #eee;">'
+            f'<div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;'
+            f'color:#888;margin-bottom:10px;">Sources</div>'
+            f'<ul style="margin:0;padding-left:18px;color:#666;font-size:13px;line-height:1.6;">{src_items}</ul></div>'
+        )
 
-    total = len(new_entries)
-    source_count = len(by_sender)
+    source_count = len(sources)
 
     return f"""<!DOCTYPE html>
 <html>
@@ -402,26 +409,28 @@ def build_digest_html(new_entries: list[dict], run_date: datetime) -> str:
     <!-- Stats bar -->
     <div style="background:#f8f9ff;padding:12px 32px;border-bottom:1px solid #eee;
                 font-size:13px;color:#555;">
-      <strong>{total}</strong> item{'s' if total != 1 else ''} from
-      <strong>{source_count}</strong> source{'s' if source_count != 1 else ''}
+      Consolidated from <strong>{source_count}</strong> newsletter{'s' if source_count != 1 else ''}
     </div>
 
     <!-- Content -->
     <div style="padding:28px 32px;">
-      {sections}
+      {summary_html}
+      {facts_html}
+      {keywords_html}
+      {sources_html}
     </div>
 
     <!-- Footer -->
     <div style="padding:16px 32px;background:#fafafa;border-top:1px solid #eee;
                 font-size:11px;color:#aaa;text-align:center;">
-      Summaries generated by Claude Haiku · Original emails have been trashed
+      Digest generated by Claude Sonnet · Original emails have been trashed
     </div>
   </div>
 </body>
 </html>"""
 
 
-def send_digest_email(service, new_entries: list[dict], run_date: datetime):
+def send_digest_email(service, digest: dict, sources: list[str], run_date: datetime):
     """Send the HTML digest to the authenticated Gmail account (self-send)."""
     from email.mime.multipart import MIMEMultipart
     from email.mime.text import MIMEText
@@ -431,15 +440,15 @@ def send_digest_email(service, new_entries: list[dict], run_date: datetime):
     own_email = profile["emailAddress"]
 
     date_str  = run_date.strftime("%a, %d %b %Y")
-    total     = len(new_entries)
-    subject   = f"Newsletter Digest — {date_str} ({total} item{'s' if total != 1 else ''})"
+    source_count = len(sources)
+    subject   = f"Newsletter Digest — {date_str} ({source_count} source{'s' if source_count != 1 else ''})"
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = subject
     msg["From"]    = own_email
     msg["To"]      = own_email
 
-    html_body = build_digest_html(new_entries, run_date)
+    html_body = build_digest_html(digest, sources, run_date)
     msg.attach(MIMEText(html_body, "html", "utf-8"))
 
     raw_bytes = base64.urlsafe_b64encode(msg.as_bytes()).decode()
@@ -448,7 +457,7 @@ def send_digest_email(service, new_entries: list[dict], run_date: datetime):
         body={"raw": raw_bytes}
     ).execute()
 
-    print(f"  ✉ Digest email sent to {own_email}  ({total} item(s))")
+    print(f"  ✉ Digest email sent to {own_email}  ({source_count} source(s))")
 
 
 # ── State persistence ─────────────────────────────────────────────────────────
@@ -482,78 +491,84 @@ def main():
 
     if not messages:
         print("✓ Nothing to process.")
-        # Still save state in case IDs changed (e.g. after manual trash)
         save_processed_ids(processed_ids)
         return
 
-    # Load existing RSS entries
-    feed_entries = load_existing_feed()
-    new_entries: list[dict] = []   # only today's items — used for the digest email
+    # ── Phase 1: Fetch all emails ────────────────────────────────────────────
+    emails: list[dict] = []
+    fetched_ids: list[str] = []
 
     for msg_meta in messages:
         msg_id = msg_meta["id"]
-        print(f"\n  Processing {msg_id}…")
+        print(f"\n  Fetching {msg_id}…")
 
         try:
             email = get_message_detail(gmail, msg_id)
             print(f"    Subject : {email['subject']}")
             print(f"    From    : {email['sender']}")
-
-            items = summarise_with_haiku(email)
-
-            if not items:
-                print("    ↳ Haiku determined: no substantive content. Skipping.")
-            else:
-                print(f"    ↳ Haiku extracted {len(items)} item(s).")
-                pub_date = email["date"].strftime("%a, %d %b %Y %H:%M:%S +0000")
-
-                for i, item in enumerate(items):
-                    # Build structured summary from the three sections
-                    exec_summary = item.get("executive_summary", "")
-                    key_facts = item.get("key_facts", [])
-                    opinion = item.get("opinion_or_thesis", "")
-                    # Fallback for legacy "summary" field (e.g. from older cached data)
-                    if not exec_summary and "summary" in item:
-                        exec_summary = item["summary"]
-
-                    entry = {
-                        "subject":  email["subject"] if len(items) == 1 else f"{email['subject']} [{i+1}/{len(items)}]",
-                        "sender":   email["sender"],
-                        "date":     pub_date,
-                        "executive_summary": exec_summary,
-                        "key_facts": key_facts,
-                        "opinion_or_thesis": opinion,
-                        "summary":  _compose_summary(exec_summary, key_facts, opinion),
-                        "keywords": item.get("keywords", []),
-                        "guid":     f"{msg_id}-{i}",
-                        "link":     FEED_LINK,
-                    }
-                    feed_entries.insert(0, entry)  # newest first
-                    new_entries.append(entry)
-
-            # Trash the email
-            trash_message(gmail, msg_id)
-            print(f"    ✓ Trashed.")
-
-            processed_ids.add(msg_id)
-
+            emails.append(email)
+            fetched_ids.append(msg_id)
         except Exception as exc:
-            print(f"    ✗ Error processing {msg_id}: {exc}")
-            # Don't trash on error — leave for retry
+            print(f"    ✗ Error fetching {msg_id}: {exc}")
 
-    # Write updated RSS
-    RSS_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    rss_xml = build_rss(feed_entries)
-    RSS_FILE.write_text(rss_xml, encoding="utf-8")
-    print(f"\n  RSS feed written → {RSS_FILE}  ({len(new_entries)} new item(s) added)")
+    if not emails:
+        print("✗ No emails could be fetched. Exiting.")
+        save_processed_ids(processed_ids)
+        return
 
-    # Send digest email (only if there's something to report)
-    if new_entries:
-        send_digest_email(gmail, new_entries, datetime.now(timezone.utc))
+    # ── Phase 2: Summarise all emails in one Sonnet call ─────────────────────
+    print(f"\n  Summarising {len(emails)} email(s) with Sonnet…")
+    digest = summarise_all_emails(emails)
 
-    # Persist processed IDs
+    if not digest:
+        print("  ↳ Sonnet determined: no substantive content across all emails.")
+    else:
+        print("  ↳ Consolidated digest generated.")
+
+        # Build a single RSS entry for this run
+        run_date = datetime.now(timezone.utc)
+        pub_date = run_date.strftime("%a, %d %b %Y %H:%M:%S +0000")
+        date_label = run_date.strftime("%Y-%m-%d")
+
+        keywords_flat = [k["keyword"] for k in digest.get("keywords", [])]
+        sources = [f"{e['sender']} — {e['subject']}" for e in emails]
+
+        entry = {
+            "subject":  f"Newsletter Digest — {date_label}",
+            "sender":   "Newsletter Digest Bot",
+            "date":     pub_date,
+            "summary":  _compose_summary(
+                digest.get("executive_summary", ""),
+                digest.get("key_facts", []),
+                digest.get("keywords", []),
+            ),
+            "keywords": keywords_flat,
+            "guid":     f"digest-{date_label}",
+            "link":     FEED_LINK,
+        }
+
+        feed_entries = load_existing_feed()
+        feed_entries.insert(0, entry)
+
+        # Write updated RSS
+        RSS_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+        rss_xml = build_rss(feed_entries)
+        RSS_FILE.write_text(rss_xml, encoding="utf-8")
+        print(f"\n  RSS feed written → {RSS_FILE}  (1 new digest entry added)")
+
+        # Send digest email
+        send_digest_email(gmail, digest, sources, run_date)
+
+    # ── Phase 3: Trash processed emails and persist state ────────────────────
+    for i, msg_id in enumerate(fetched_ids):
+        try:
+            trash_message(gmail, msg_id)
+            print(f"    ✓ Trashed {emails[i]['subject']}")
+        except Exception as exc:
+            print(f"    ✗ Error trashing {msg_id}: {exc}")
+        processed_ids.add(msg_id)
+
     save_processed_ids(processed_ids)
-
     print("\n✓ Done.")
 
 
