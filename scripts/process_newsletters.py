@@ -223,7 +223,7 @@ def summarise_all_emails(emails: list[dict]) -> dict | None:
     user_content = "\n".join(email_blocks)
 
     message = client.messages.create(
-        model      = "claude-sonnet-4-5-20241022",
+        model      = "claude-sonnet-4-5",
         max_tokens = 4096,
         system     = SYSTEM_PROMPT,
         messages   = [{"role": "user", "content": user_content}],
