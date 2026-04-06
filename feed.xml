@@ -3,9 +3,40 @@
   <channel>
     <title>Simon's Newsletter Digest</title>
     <link>https://unsubject.github.io/newsletter-digest</link>
-    <description>Auto-summarised newsletter entries, powered by Claude Haiku</description>
+    <description>Auto-summarised newsletter digest, powered by Claude Sonnet</description>
     <language>en</language>
-    <lastBuildDate>Sun, 05 Apr 2026 07:59:15 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Apr 2026 05:30:24 +0000</lastBuildDate>
+    <item>
+      <title>Newsletter Digest — 2026-04-06</title>
+      <author>Newsletter Digest Bot</author>
+      <description>Executive Summary: The dominant global story across these newsletters is an ongoing US-Iran war that has closed the Strait of Hormuz, triggering an historic oil price surge (crude above $111/barrel), severe disruptions to global aviation and travel, and cascading economic effects including a 24% spike in airfares and energy crises in Europe and Asia. Trump's mixed signals about ending the conflict—claiming US involvement would end in 2-3 weeks while announcing continued bombing—have kept markets volatile. On the technology front, multiple security incidents dominated Hacker News, including the leak of Claude Code's source and the compromise of the Axios NPM package, while AI startups continued attracting major funding (Variance's $21.5M Series A, SpaceX's planned $75B IPO at a $1.75T valuation). Apple's 50th anniversary prompted extensive retrospective coverage, with The Verge conducting a 1.6-million-vote reader poll on its best products. Geopolitically, Taiwan's KMT chairwoman Cheng Li-wen's visit to mainland China (the first KMT leader visit in 10 years) and a UK-convened 40-nation diplomatic summit on reopening the Strait of Hormuz signal active multilateral maneuvering around the crisis.
+
+Key Facts: • Crude oil rose to over $111 per barrel amid the Iran war and Strait of Hormuz closure (Morning Brew, April 3). • Average global airfares jumped 24% to $465 for the week beginning March 9 compared with the same period last year, per airfare tracker OAG (Morning Brew, April 3). • Delta said jet fuel costs ballooned by $400 million in March alone due to the conflict (Morning Brew, April 3). • SpaceX filed confidential IPO paperwork targeting a $75 billion raise at a $1.75 trillion valuation, which would dwarf the current record held by Saudi Aramco's $29 billion 2019 debut (Morning Brew, April 2). • Variance, a YC-backed AI compliance startup, announced a $21.5 million Series A after three years building in stealth, serving clients including Fortune 500s and GoFundMe (YC Newsletter). • Artemis II successfully launched from Kennedy Space Center at 6:35pm ET on April 1, carrying four astronauts on NASA's first deep-space crewed flight in over 50 years (Morning Brew, April 2). • Tesla delivered approximately 358,000 vehicles in Q1 2026, significantly below analyst projections and well under the 408,000 it produced; its stock fell nearly 6% and is down ~20% year-to-date (Morning Brew, April 3). • Claude Code's source code was leaked via a map file in the NPM registry; separately, Anthropic is also cited as accidentally leaking the internal source code (Hacker News / Morning Brew). • The Axios NPM package was compromised with malicious versions that drop a remote access trojan (Hacker News). • KMT Chairwoman Cheng Li-wen's visit to mainland China (April 7–12) is the first by a KMT leader in 10 years; Beijing announced it the day before Trump's originally scheduled China visit was postponed (Initium Weekly). • Hong Kong's Hung Fuk Estate fire killed 168 people and displaced 1,984 households; inquiry hearings revealed fire systems were known to be defective before the blaze (Initium Weekly). • The UK convened a meeting of 40+ foreign ministers on April 2 to discuss diplomatically reopening the Strait of Hormuz; the US did not participate (Initium Weekly). • The FDA approved Eli Lilly's GLP-1 pill Foundayo, making it the second oral weight-loss drug on the market; analysts project ~$21 billion in global sales by 2030 (Morning Brew, April 2). • Colonial Williamsburg expects 2.1 million visitors in 2026, up from 1.8 million in 2024, as America's 250th anniversary boosts historical impersonator demand (Morning Brew, April 5). • Italy failed to qualify for the FIFA World Cup for the third consecutive time after losing to Bosnia and Herzegovina (ranked 65th), prompting the resignation of two senior soccer federation officials (Morning Brew, April 3).
+
+Keywords: Iran war / Strait of Hormuz closure (4), AI startups and funding rounds (3), Oil prices and energy crisis (3), Trump foreign policy and NATO (3), Claude Code source leak / AI security (2), SpaceX IPO (2), Apple 50th anniversary (2), Cybersecurity / botnet / NPM compromise (2), Tesla EV sales decline (2), Aviation airfare increases (2), Taiwan-China relations / KMT visit (2), GLP-1 weight-loss drugs (2), Celebrity and historical impersonation industry (1), Artemis II moon mission (1), Hong Kong Hung Fuk Estate fire inquiry (1), Europe energy policy (1), OpenAI acquisitions / TBPN (2), Graduate school ROI (1)</description>
+      <pubDate>Mon, 06 Apr 2026 05:30:24 +0000</pubDate>
+      <guid isPermaLink="false">digest-2026-04-06</guid>
+      <link>https://unsubject.github.io/newsletter-digest</link>
+      <keywords>Iran war / Strait of Hormuz closure, AI startups and funding rounds, Oil prices and energy crisis, Trump foreign policy and NATO, Claude Code source leak / AI security, SpaceX IPO, Apple 50th anniversary, Cybersecurity / botnet / NPM compromise, Tesla EV sales decline, Aviation airfare increases, Taiwan-China relations / KMT visit, GLP-1 weight-loss drugs, Celebrity and historical impersonation industry, Artemis II moon mission, Hong Kong Hung Fuk Estate fire inquiry, Europe energy policy, OpenAI acquisitions / TBPN, Graduate school ROI</keywords>
+      <category>Iran war / Strait of Hormuz closure</category>
+      <category>AI startups and funding rounds</category>
+      <category>Oil prices and energy crisis</category>
+      <category>Trump foreign policy and NATO</category>
+      <category>Claude Code source leak / AI security</category>
+      <category>SpaceX IPO</category>
+      <category>Apple 50th anniversary</category>
+      <category>Cybersecurity / botnet / NPM compromise</category>
+      <category>Tesla EV sales decline</category>
+      <category>Aviation airfare increases</category>
+      <category>Taiwan-China relations / KMT visit</category>
+      <category>GLP-1 weight-loss drugs</category>
+      <category>Celebrity and historical impersonation industry</category>
+      <category>Artemis II moon mission</category>
+      <category>Hong Kong Hung Fuk Estate fire inquiry</category>
+      <category>Europe energy policy</category>
+      <category>OpenAI acquisitions / TBPN</category>
+      <category>Graduate school ROI</category>
+    </item>
     <item>
       <title>This week's long reads [4/4]</title>
       <author>The Guardian &lt;info@editorial.theguardian.com&gt;</author>
@@ -2917,20 +2948,6 @@ Opinion/Thesis: The author expresses strong criticism that Chinese University un
       <category>ARC prize</category>
       <category>AI benchmarks</category>
       <category>deep learning</category>
-    </item>
-    <item>
-      <title>Inside The Startup Making Chemicals From Sugar Instead Of Fossil Fuels [1/11]</title>
-      <author>This Week at YC &lt;info@ycombinator.com&gt;</author>
-      <description>Solugen, a YC company, is reinventing chemical manufacturing by using biology and chemistry to produce chemicals from sugar instead of fossil fuels. Co-founders Gaurab Chakrabarti and Sean Hunt grew the company from a $7,000 PVC reactor to a billion-dollar valuation while competing with industry giants in the $6 trillion chemical manufacturing industry. Their approach combines enzymatic and catalytic production methods.</description>
-      <pubDate>Sun, 29 Mar 2026 20:25:29 +0000</pubDate>
-      <guid isPermaLink="false">19d3b462a53f27ef-0</guid>
-      <link>https://unsubject.github.io/newsletter-digest</link>
-      <keywords>Solugen, chemical manufacturing, bio-based chemicals, fossil fuel alternatives, enzymatic production</keywords>
-      <category>Solugen</category>
-      <category>chemical manufacturing</category>
-      <category>bio-based chemicals</category>
-      <category>fossil fuel alternatives</category>
-      <category>enzymatic production</category>
     </item>
   </channel>
 </rss>
