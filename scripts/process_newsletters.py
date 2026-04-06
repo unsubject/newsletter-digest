@@ -154,32 +154,55 @@ def trash_message(service, msg_id: str):
 
 
 # ── Claude Sonnet summariser ─────────────────────────────────────────────────
-SYSTEM_PROMPT = """You are a ruthlessly efficient newsletter analyst.
+SYSTEM_PROMPT = """You are a sharp morning-briefing analyst writing a personal daily digest.
 
-You will receive the contents of multiple newsletter emails. Your job is to
-synthesise ALL of them into a single consolidated digest.
+You will receive the contents of multiple newsletter emails. Synthesise ALL of
+them into a single, well-organised digest structured around themes. Write with
+enough context that the reader understands *why* something matters, not just
+*what* happened. Draw connections between topics when they exist across
+different newsletters.
 
 Produce a JSON object with these exact keys:
 
-1. "executive_summary": A cohesive overview (4-8 sentences) of the key issues,
-   themes, and developments across all the emails. Highlight connections between
-   topics where they exist.
+1. "themes": An array of theme objects. Identify the major themes or subject
+   areas that emerge across all the emails (e.g. "US-China Trade Relations",
+   "AI Industry Developments", "Consumer Tech"). For each theme:
 
-2. "key_facts": An array of 6-15 specific factual statements, data points, or
-   pieces of evidence extracted from across the emails (numbers, names, dates,
-   quotes). Each entry is a short sentence. Attribute facts to their source
-   newsletter where helpful.
+   - "theme": A concise, descriptive theme title.
+   - "summary": A 3-6 sentence briefing on this theme. Provide context — what
+     happened, why it matters, and how different newsletters covered it. If
+     multiple sources covered the same theme, note where they agree, differ, or
+     complement each other.
+   - "facts": An array of evidence items under this theme. Each item is an
+     object with:
+       - "statement": The specific fact, data point, quote, or claim.
+       - "source": The newsletter name or sender it came from.
+       - "type": Either "fact" (verifiable, objective data) or
+         "interpretation" (opinion, editorial stance, conjecture, prediction).
+     Include 2-6 items per theme.
+   - "connections": (optional) 1-2 sentences noting how this theme links to
+     another theme in this digest, if applicable. Omit if no connection exists.
 
-3. "keywords": An array of objects, each with "keyword" (string) and "count"
-   (integer) keys, ranked by how many distinct emails mention that topic.
+   Aim for 3-7 themes. A single email can contribute to multiple themes.
+
+2. "keywords": An array of objects, each with "keyword" (string) and "count"
+   (integer), ranked by how many distinct emails mention that topic.
    Include 8-20 keywords. Be specific (e.g. "Federal Reserve rate cut" not
    just "economy").
 
 Respond ONLY with valid JSON, no markdown fences, no preamble.
 Schema:
 {
-  "executive_summary": "...",
-  "key_facts": ["...", ...],
+  "themes": [
+    {
+      "theme": "...",
+      "summary": "...",
+      "facts": [
+        {"statement": "...", "source": "...", "type": "fact|interpretation"}
+      ],
+      "connections": "..."
+    }
+  ],
   "keywords": [{"keyword": "...", "count": N}, ...]
 }
 
@@ -187,6 +210,8 @@ Rules:
 - Ignore purely promotional/advertising content with zero informational value.
 - Do not invent facts. Only summarise what is explicitly in the emails.
 - Merge and deduplicate overlapping coverage across newsletters.
+- Clearly distinguish hard facts from opinions/interpretations via the "type" field.
+- Attribute every fact or interpretation to its source newsletter.
 """
 
 
@@ -240,20 +265,28 @@ def summarise_all_emails(emails: list[dict]) -> dict | None:
         else:
             return None
 
-    if not data.get("executive_summary") and not data.get("key_facts"):
+    if not data.get("themes"):
         return None
 
     return data
 
 
-def _compose_summary(executive_summary: str, key_facts: list[str], keywords: list[dict]) -> str:
-    """Compose a plain-text summary from the structured sections."""
+def _compose_summary(themes: list[dict], keywords: list[dict]) -> str:
+    """Compose a plain-text summary from the theme-based structure (for RSS)."""
     parts = []
-    if executive_summary:
-        parts.append(f"Executive Summary: {executive_summary}")
-    if key_facts:
-        facts_str = " ".join(f"• {f}" for f in key_facts)
-        parts.append(f"Key Facts: {facts_str}")
+    for t in themes:
+        section = f"## {t.get('theme', 'Untitled')}\n{t.get('summary', '')}"
+        facts = t.get("facts", [])
+        if facts:
+            lines = []
+            for f in facts:
+                tag = "[fact]" if f.get("type") == "fact" else "[interpretation]"
+                lines.append(f"  • {tag} {f.get('statement', '')} — {f.get('source', '')}")
+            section += "\n" + "\n".join(lines)
+        conn = t.get("connections")
+        if conn:
+            section += f"\n  ↳ {conn}"
+        parts.append(section)
     if keywords:
         kw_str = ", ".join(f"{k['keyword']} ({k['count']})" for k in keywords)
         parts.append(f"Keywords: {kw_str}")
@@ -340,28 +373,61 @@ def build_digest_html(digest: dict, sources: list[str], run_date: datetime) -> s
     """Render the consolidated digest as a styled HTML email body."""
     date_str = run_date.strftime("%A, %d %B %Y")
 
-    exec_sum = digest.get("executive_summary", "")
-    key_facts = digest.get("key_facts", [])
+    themes = digest.get("themes", [])
     keywords = digest.get("keywords", [])
 
-    # Executive summary section
-    summary_html = ""
-    if exec_sum:
-        summary_html = (
-            f'<div style="color:#444;line-height:1.7;font-size:14px;margin-bottom:20px;">'
-            f'{html_module.escape(exec_sum)}</div>'
-        )
+    # Build theme sections
+    themes_html = ""
+    for t in themes:
+        theme_title = html_module.escape(t.get("theme", ""))
+        summary = html_module.escape(t.get("summary", ""))
 
-    # Key facts section
-    facts_html = ""
-    if key_facts:
-        facts_li = "".join(f"<li>{html_module.escape(f)}</li>" for f in key_facts)
-        facts_html = (
-            f'<div style="margin-bottom:20px;">'
-            f'<div style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;'
-            f'color:#888;margin-bottom:10px;">Key Facts &amp; Evidence</div>'
-            f'<ul style="margin:0;padding-left:18px;color:#444;font-size:14px;line-height:1.7;">{facts_li}</ul></div>'
-        )
+        # Facts grouped by type
+        facts = t.get("facts", [])
+        hard_facts = [f for f in facts if f.get("type") == "fact"]
+        interpretations = [f for f in facts if f.get("type") == "interpretation"]
+
+        facts_block = ""
+        if hard_facts:
+            items = "".join(
+                f'<li style="margin-bottom:4px;">{html_module.escape(f["statement"])} '
+                f'<span style="color:#888;font-size:12px;">— {html_module.escape(f.get("source", ""))}</span></li>'
+                for f in hard_facts
+            )
+            facts_block += (
+                f'<div style="margin-top:10px;">'
+                f'<div style="font-size:12px;font-weight:600;color:#2b7a4b;margin-bottom:4px;">Facts</div>'
+                f'<ul style="margin:0;padding-left:18px;color:#444;font-size:13px;line-height:1.6;">{items}</ul></div>'
+            )
+        if interpretations:
+            items = "".join(
+                f'<li style="margin-bottom:4px;font-style:italic;">{html_module.escape(f["statement"])} '
+                f'<span style="color:#888;font-size:12px;font-style:normal;">— {html_module.escape(f.get("source", ""))}</span></li>'
+                for f in interpretations
+            )
+            facts_block += (
+                f'<div style="margin-top:10px;">'
+                f'<div style="font-size:12px;font-weight:600;color:#b8860b;margin-bottom:4px;">Interpretations &amp; Conjecture</div>'
+                f'<ul style="margin:0;padding-left:18px;color:#555;font-size:13px;line-height:1.6;">{items}</ul></div>'
+            )
+
+        # Connections callout
+        connections_html = ""
+        conn = t.get("connections")
+        if conn:
+            connections_html = (
+                f'<div style="margin-top:10px;padding:8px 12px;background:#f8f9ff;border-left:3px solid #7c8bbf;'
+                f'font-size:12px;color:#555;line-height:1.5;">'
+                f'↳ {html_module.escape(conn)}</div>'
+            )
+
+        themes_html += f"""
+        <div style="margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid #eee;">
+          <div style="font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:8px;">{theme_title}</div>
+          <div style="color:#444;line-height:1.7;font-size:14px;">{summary}</div>
+          {facts_block}
+          {connections_html}
+        </div>"""
 
     # Keywords section (ranked by occurrence)
     keywords_html = ""
@@ -392,6 +458,7 @@ def build_digest_html(digest: dict, sources: list[str], run_date: datetime) -> s
         )
 
     source_count = len(sources)
+    theme_count = len(themes)
 
     return f"""<!DOCTYPE html>
 <html>
@@ -409,13 +476,13 @@ def build_digest_html(digest: dict, sources: list[str], run_date: datetime) -> s
     <!-- Stats bar -->
     <div style="background:#f8f9ff;padding:12px 32px;border-bottom:1px solid #eee;
                 font-size:13px;color:#555;">
-      Consolidated from <strong>{source_count}</strong> newsletter{'s' if source_count != 1 else ''}
+      <strong>{theme_count}</strong> theme{'s' if theme_count != 1 else ''} from
+      <strong>{source_count}</strong> newsletter{'s' if source_count != 1 else ''}
     </div>
 
     <!-- Content -->
     <div style="padding:28px 32px;">
-      {summary_html}
-      {facts_html}
+      {themes_html}
       {keywords_html}
       {sources_html}
     </div>
@@ -538,8 +605,7 @@ def main():
             "sender":   "Newsletter Digest Bot",
             "date":     pub_date,
             "summary":  _compose_summary(
-                digest.get("executive_summary", ""),
-                digest.get("key_facts", []),
+                digest.get("themes", []),
                 digest.get("keywords", []),
             ),
             "keywords": keywords_flat,
