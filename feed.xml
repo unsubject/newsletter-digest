@@ -5,7 +5,38 @@
     <link>https://unsubject.github.io/newsletter-digest</link>
     <description>Auto-summarised newsletter digest, powered by Claude Sonnet</description>
     <language>en</language>
-    <lastBuildDate>Mon, 06 Apr 2026 08:24:55 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 07 Apr 2026 08:17:35 +0000</lastBuildDate>
+    <item>
+      <title>Newsletter Digest — 2026-04-07</title>
+      <author>Newsletter Digest Bot</author>
+      <description>Executive Summary: This digest covers two dominant interlocking themes: the geopolitical ramifications of the ongoing US-Israeli military campaign against Iran, and its cascading effects on Taiwan's security and cross-strait dynamics. Multiple newsletters from Pacific Forum, Global Taiwan Institute, and Hong Kong-based outlets analyse how the Iran war simultaneously demonstrates US military willingness to project force abroad while depleting critical munitions stockpiles—particularly Tomahawk cruise missiles—that would be needed in any Indo-Pacific conflict. The tech sector features prominently through Spyglass, with major OpenAI leadership reshuffles, its push into a 'super app' strategy to compete with Anthropic, and Microsoft's controversial injection of Copilot ads into GitHub pull requests. Taiwan's own defense posture is receiving detailed scrutiny, including its special defense budget, the Hai Kun submarine program, and plans to field the world's highest density of anti-ship missiles by end of 2026. US-China relations remain in a fragile truce, with Trump and Xi planning two formal summits, while Beijing monitors KMT political developments in Taiwan as a potential alternative to military action. Hong Kong-focused newsletters examined Interpol's annual meeting in the city and questions around its arts environment.
+
+Key Facts: • The US military has fired 850 to 1,000 Tomahawk cruise missiles in the Iran campaign, costing approximately $3.5 million each and requiring two to three years to replace (Pacific Forum). • Assets temporarily moved from Asia to the Middle East for the Iran campaign include the USS Abraham Lincoln carrier strike group, two additional destroyers, Patriot interceptors, THAAD tubes, and two Marine expeditionary units (Pacific Forum). • Taiwan claims it will have 'the world's highest density of anti-ship missiles' by the end of 2026 (Pacific Forum). • Japan began deploying its new Type 25 anti-ship cruise missile in March 2026, capable of ranging the Taiwan Strait (Pacific Forum). • Chinese foreign affairs analyst Zheng Yongnian concluded after the Iran campaign that the US is 'still number one,' while scholar Shi Yinhong said the tactical success of American forces 'strongly impressed the leaders here' (Pacific Forum). • Xi Jinping is mid-purge of roughly half his senior military commanders, with a disproportionate number from the PLA Rocket Force, which would have a key role in any Taiwan assault (Pacific Forum). • Taiwan's KMT Chairwoman Cheng Li-wun visited China in April 2026, and the KMT-TPP coalition holds a majority in Taiwan's legislature (Pacific Forum). • President Lai Ching-te's approval ratings were negative for much of 2025 and have hovered around 50 percent in 2026 (Pacific Forum). • OpenAI recently completed a $122 billion fundraise and is undergoing a major leadership reshuffle, with its COO moving to 'special projects,' its CMO stepping down, and CEO of AGI Development Fidji Simo taking a leave of absence (Spyglass). • ChatGPT is approaching 1 billion active users and OpenAI is pursuing a 'super app' strategy centered on making Codex accessible to non-engineers (Spyglass). • Microsoft injected a Copilot advertisement into a developer's GitHub pull request, triggering widespread backlash before the company removed the feature (Spyglass, quoting developer Zach Manson). • Arm Holdings (ARM) rose 3.48% from $144.10 to $149.11, peaking at $158.37, as the top performer among four stock picks for the week of March 30 (MHK TECH). • The four stock picks for the week of March 30 averaged a 1.61% gain versus a 3.71% Nasdaq gain, underperforming by 2.10 percentage points but recording a first positive week after four consecutive losses (MHK TECH). • The Global Taiwan Brief published analyses on Taiwan's special defense budget, the Hai Kun submarine program's challenges, and Taiwan-Europe defense technology collaboration in March 2026 (Global Taiwan Institute). • China's 2005 Anti-Succession Law formally threatens the use of force against Taiwan, and Beijing does not peg its military posture to a normative bar set by US actions elsewhere (Pacific Forum).
+
+Keywords: US-Iran military campaign (5), Taiwan security and cross-strait conflict risk (4), China-Taiwan relations and PLA posture (4), OpenAI leadership and strategy (2), Tomahawk cruise missile depletion (2), Trump foreign policy and military interventionism (3), US-China trade war and tariffs (2), Taiwan defense budget and military buildup (2), KMT political developments in Taiwan (2), OpenAI vs Anthropic competition (2), Microsoft Copilot and GitHub advertising controversy (1), Hai Kun submarine program (2), Indo-Pacific munitions stockpile window of opportunity (2), YouTube Stations and lean-back TV experience (1), Hong Kong arts and Interpol annual meeting (1), US stock market outlook and Nasdaq performance (1), Japan anti-ship missile deployment (2), Xi Jinping military purge of PLA commanders (2)</description>
+      <pubDate>Tue, 07 Apr 2026 08:17:35 +0000</pubDate>
+      <guid isPermaLink="false">digest-2026-04-07</guid>
+      <link>https://unsubject.github.io/newsletter-digest</link>
+      <keywords>US-Iran military campaign, Taiwan security and cross-strait conflict risk, China-Taiwan relations and PLA posture, OpenAI leadership and strategy, Tomahawk cruise missile depletion, Trump foreign policy and military interventionism, US-China trade war and tariffs, Taiwan defense budget and military buildup, KMT political developments in Taiwan, OpenAI vs Anthropic competition, Microsoft Copilot and GitHub advertising controversy, Hai Kun submarine program, Indo-Pacific munitions stockpile window of opportunity, YouTube Stations and lean-back TV experience, Hong Kong arts and Interpol annual meeting, US stock market outlook and Nasdaq performance, Japan anti-ship missile deployment, Xi Jinping military purge of PLA commanders</keywords>
+      <category>US-Iran military campaign</category>
+      <category>Taiwan security and cross-strait conflict risk</category>
+      <category>China-Taiwan relations and PLA posture</category>
+      <category>OpenAI leadership and strategy</category>
+      <category>Tomahawk cruise missile depletion</category>
+      <category>Trump foreign policy and military interventionism</category>
+      <category>US-China trade war and tariffs</category>
+      <category>Taiwan defense budget and military buildup</category>
+      <category>KMT political developments in Taiwan</category>
+      <category>OpenAI vs Anthropic competition</category>
+      <category>Microsoft Copilot and GitHub advertising controversy</category>
+      <category>Hai Kun submarine program</category>
+      <category>Indo-Pacific munitions stockpile window of opportunity</category>
+      <category>YouTube Stations and lean-back TV experience</category>
+      <category>Hong Kong arts and Interpol annual meeting</category>
+      <category>US stock market outlook and Nasdaq performance</category>
+      <category>Japan anti-ship missile deployment</category>
+      <category>Xi Jinping military purge of PLA commanders</category>
+    </item>
     <item>
       <title>Newsletter Digest — 2026-04-06</title>
       <author>Newsletter Digest Bot</author>
@@ -2943,21 +2974,6 @@ Opinion/Thesis: The author expresses strong criticism that Chinese University un
       <category>$40 million funding</category>
       <category>transaction data</category>
       <category>banking</category>
-    </item>
-    <item>
-      <title>Inside The Startup Making Chemicals From Sugar Instead Of Fossil Fuels [3/11]</title>
-      <author>This Week at YC &lt;info@ycombinator.com&gt;</author>
-      <description>Glimpse, a YC company, raised $35 million in Series A funding to bring AI-native infrastructure to consumer packaged goods (CPG) and retail sectors.</description>
-      <pubDate>Sun, 29 Mar 2026 20:25:29 +0000</pubDate>
-      <guid isPermaLink="false">19d3b462a53f27ef-2</guid>
-      <link>https://unsubject.github.io/newsletter-digest</link>
-      <keywords>Glimpse, Series A funding, $35 million, AI infrastructure, CPG, retail</keywords>
-      <category>Glimpse</category>
-      <category>Series A funding</category>
-      <category>$35 million</category>
-      <category>AI infrastructure</category>
-      <category>CPG</category>
-      <category>retail</category>
     </item>
   </channel>
 </rss>
