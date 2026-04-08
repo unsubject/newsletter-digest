@@ -5,7 +5,35 @@
     <link>https://unsubject.github.io/newsletter-digest</link>
     <description>Auto-summarised newsletter digest, powered by Claude Sonnet</description>
     <language>en</language>
-    <lastBuildDate>Tue, 07 Apr 2026 08:17:35 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Apr 2026 08:16:18 +0000</lastBuildDate>
+    <item>
+      <title>Newsletter Digest — 2026-04-08</title>
+      <author>Newsletter Digest Bot</author>
+      <description>Executive Summary: The dominant themes across these newsletters are the rapid and turbulent evolution of AI infrastructure and its societal consequences, and escalating geopolitical conflict centred on Iran. On the AI front, Anthropic's Claude suffered 51 outages in March 2026 alone—roughly double its average—due to explosive user growth, while a bipartisan wave of local-government moratoriums on AI data center construction is emerging across the US, driven by concerns over energy, water, zoning, and community disruption. OpenAI simultaneously published a sweeping policy blueprint arguing AI-driven wealth should be redistributed through a shorter workweek, public wealth funds, and expanded social benefits. Financial markets are being roiled by the Iran conflict and by post-IPO insider selling at AI infrastructure company CoreWeave, while congressional trading practices face renewed SEC scrutiny. On the geopolitical front, the US-Israeli war against Iran is spilling into the Indian Ocean, with Sri Lanka maintaining neutrality despite a torpedoed Iranian vessel off its coast, and Iran launching ballistic missiles at the joint US-UK Diego Garcia base. Cross-cutting these stories is a broader tension between the concentrated costs and diffused benefits of technological and economic disruption, echoing the political backlash that felled globalization in prior decades.
+
+Key Facts: • Anthropic's Claude-related services suffered 51 outages in March 2026, nearly double the 2025 monthly average of 27.9 (Initium Media). • Claude's paid subscriber base has more than doubled this year; its US daily active user market share reached 10% as of March 26, up 167% month-over-month (Initium Media, citing Apptopia). • ChatGPT's US daily active user market share fell to 38.7% in March 2026—its fourth consecutive monthly decline and first time below 40%—down from 52% less than six months ago (Initium Media). • CoreWeave's CEO and CSO sold $146 million in stock within days of the company's IPO (Quiver Quantitative). • Senators Warner and Schiff have demanded an SEC probe into congressional insider trading; Rep. Tim Moore (R-NC) has filed over 150 trades since entering Congress (Quiver Quantitative). • Michael Burry's short-AI strategy posted +7.55% for the week as Palantir dropped 30% from its highs (Quiver Quantitative). • The US Navy torpedoed the Iranian vessel IRIS Dena approximately 44 nautical miles off Sri Lanka's southern coast on March 4, 2026, killing an estimated 87 people with 32 rescued from about 180 aboard (Pacific Forum). • Iran launched two intermediate-range ballistic missiles at Diego Garcia, the joint US-UK base roughly 300 miles south of the Maldives; one failed mid-air and one was intercepted by a US Navy SM-3 interceptor (Pacific Forum). • Iranian Supreme Leader Ayatollah Khamenei was killed on February 28, 2026, escalating the US-Israeli conflict with Iran (Pacific Forum). • President Trump set an 8pm ET deadline on April 7 for Iran to reopen the Strait of Hormuz, threatening to attack 'every bridge' and 'every power plant' in Iran (Morning Brew). • Interconnected's dashboard tracking AI data center moratoriums recorded 37 active moratoriums as of end-March 2026, with Michigan leading, followed by Georgia and Virginia; the most common cited reason is zoning (Interconnected). • OpenAI, valued at $852 billion, released a policy blueprint proposing a four-day workweek, a public wealth fund akin to Alaska's oil fund, and reduced worker taxes funded by AI company levies (Morning Brew). • NASA's Artemis II crew set a new record for farthest humans from Earth at 252,756 miles, surpassing the Apollo 13 record set in 1970 by approximately 4,102 miles (Morning Brew). • Taiwan's KMT chairperson Cheng Li-wun travelled to Shanghai and Beijing to meet Xi Jinping; a KMT AI propaganda video framing 'peace' as lying flat was criticised as packaging capitulation as peace (Pulse HK News). • Hong Kong announced that from September, all restaurant and bar licences will incorporate national security clauses (Pulse HK News).
+
+Keywords: Anthropic Claude outages and reliability (2), AI data center moratoriums (3), US-Iran war and Strait of Hormuz (3), OpenAI superintelligence policy blueprint (2), Indian Ocean Region neutrality and IRIS Dena incident (2), Congressional insider trading and STOCK Act (1), CoreWeave IPO and insider stock sales (1), Taiwan KMT and China cross-strait relations (2), Hong Kong national security legislation (2), Artemis II lunar mission (2), AI productivity and workforce displacement (3), Bipartisan anti-AI politics in US local government (2), ChatGPT vs Claude market share (1), SpaceX and Elon Musk IPO plans (1), Ye/Kanye West Wireless Festival sponsor withdrawals (1)</description>
+      <pubDate>Wed, 08 Apr 2026 08:16:18 +0000</pubDate>
+      <guid isPermaLink="false">digest-2026-04-08</guid>
+      <link>https://unsubject.github.io/newsletter-digest</link>
+      <keywords>Anthropic Claude outages and reliability, AI data center moratoriums, US-Iran war and Strait of Hormuz, OpenAI superintelligence policy blueprint, Indian Ocean Region neutrality and IRIS Dena incident, Congressional insider trading and STOCK Act, CoreWeave IPO and insider stock sales, Taiwan KMT and China cross-strait relations, Hong Kong national security legislation, Artemis II lunar mission, AI productivity and workforce displacement, Bipartisan anti-AI politics in US local government, ChatGPT vs Claude market share, SpaceX and Elon Musk IPO plans, Ye/Kanye West Wireless Festival sponsor withdrawals</keywords>
+      <category>Anthropic Claude outages and reliability</category>
+      <category>AI data center moratoriums</category>
+      <category>US-Iran war and Strait of Hormuz</category>
+      <category>OpenAI superintelligence policy blueprint</category>
+      <category>Indian Ocean Region neutrality and IRIS Dena incident</category>
+      <category>Congressional insider trading and STOCK Act</category>
+      <category>CoreWeave IPO and insider stock sales</category>
+      <category>Taiwan KMT and China cross-strait relations</category>
+      <category>Hong Kong national security legislation</category>
+      <category>Artemis II lunar mission</category>
+      <category>AI productivity and workforce displacement</category>
+      <category>Bipartisan anti-AI politics in US local government</category>
+      <category>ChatGPT vs Claude market share</category>
+      <category>SpaceX and Elon Musk IPO plans</category>
+      <category>Ye/Kanye West Wireless Festival sponsor withdrawals</category>
+    </item>
     <item>
       <title>Newsletter Digest — 2026-04-07</title>
       <author>Newsletter Digest Bot</author>
@@ -2960,20 +2988,6 @@ Opinion/Thesis: The author expresses strong criticism that Chinese University un
       <category>$42 million</category>
       <category>AI insurance</category>
       <category>physical infrastructure</category>
-    </item>
-    <item>
-      <title>Inside The Startup Making Chemicals From Sugar Instead Of Fossil Fuels [4/11]</title>
-      <author>This Week at YC &lt;info@ycombinator.com&gt;</author>
-      <description>Spade raised $40 million for fintech tools focused on smarter bank transaction data analysis.</description>
-      <pubDate>Sun, 29 Mar 2026 20:25:29 +0000</pubDate>
-      <guid isPermaLink="false">19d3b462a53f27ef-3</guid>
-      <link>https://unsubject.github.io/newsletter-digest</link>
-      <keywords>Spade, fintech, $40 million funding, transaction data, banking</keywords>
-      <category>Spade</category>
-      <category>fintech</category>
-      <category>$40 million funding</category>
-      <category>transaction data</category>
-      <category>banking</category>
     </item>
   </channel>
 </rss>
