@@ -5,7 +5,38 @@
     <link>https://unsubject.github.io/newsletter-digest</link>
     <description>Auto-summarised newsletter digest, powered by Claude Sonnet</description>
     <language>en</language>
-    <lastBuildDate>Wed, 08 Apr 2026 08:16:18 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Apr 2026 08:23:35 +0000</lastBuildDate>
+    <item>
+      <title>Newsletter Digest — 2026-04-09</title>
+      <author>Newsletter Digest Bot</author>
+      <description>Executive Summary: The dominant theme across these newsletters is US-China geopolitical competition in the context of the Trump administration's military action against Iran and aggressive tariff policy, which multiple sources argue has inadvertently weakened China's regional standing in the Indo-Pacific. A second major thread involves AI's dual-edged implications: the US Army is building a battlefield chatbot called Victor, Anthropic has developed a powerful but unreleased model called Mythos that is finding systemic software vulnerabilities at superhuman scale, and Google's AI Overviews are only 90% accurate. Real estate markets feature prominently, with US office buildings selling at up to 90% discounts and Hartford, CT emerging as the hottest housing market. Taiwan-related developments span arms sales uncertainty under Trump, KMT chair Cheng Li-wun's Beijing visit, and Taiwan's diplomatic outreach in Africa. Growing public backlash against data centers—including a shooting at an Indianapolis councilor's home—is spurring legislative action in at least nine states, while Maine is poised to become the first state to ban new large data centers. Vietnam's 2016 Formosa environmental disaster and its decade-long cover-up, and Vietnam's political consolidation under To Lam as both party chief and president, also received significant coverage.
+
+Key Facts: • The US Army is developing an AI chatbot called VictorBot, trained on lessons learned from missions including the Ukraine-Russia War and Operation Epic Fury, according to Army CTO Alex Miller speaking to WIRED. • Anthropic has developed a model called Mythos, described as too dangerous to release publicly, which is finding software vulnerabilities across operating systems and software that are decades old and were never found by humans. • Google's AI Overviews are accurate approximately 90% of the time according to research by AI startup Oumi, but given trillions of searches annually this still equates to tens of millions of inaccuracies per hour. • Distressed US office properties saw $5.2 billion in total sales nationwide in 2025, with some buildings selling at more than 90% below previous values, according to data firm MSCI. • The Hartford, Connecticut metropolitan area (population 1.2 million) is ranked the most competitive home-buying market in the US by Zillow's 2026 ranking, with a typical home value of $380,000 as of February—about 70% higher than in 2019. • Maine is expected to pass legislation imposing a moratorium on data centers consuming more than 20 megawatts, which would make it the first US state to enact such a measure; statewide bans are on the table in nine additional states. • A gunman fired 13 bullets at the home of Indianapolis city councilor Ron Gibson, leaving a note reading 'No Data Centers,' following his vote in favor of a local data center project. • In 2025, cryptocurrency transactions through licensed operators in Kyrgyzstan reached an estimated $20.5–32 billion, roughly two to three times the country's entire GDP of about $14 billion. • From 2019 to 2023, 99% of Taiwan's major conventional arms imports came from the United States, according to SIPRI data, with the US providing roughly 77% of Taiwan's major arms imports since 1979. • KMT chair Cheng Li-wun visited mainland China April 7–12 at the invitation of Xi Jinping, amid rumors of CCP interference in her election as party chair last October. • Vietnam's National Assembly unanimously appointed To Lam, general secretary of the Communist Party of Vietnam, as president for five years, consolidating power in a single leader for the first time. • The April 2016 discharge of toxic waste by Formosa Ha Tinh Steel affected 250 kilometers of Vietnam's coastline across four provinces; the company paid compensation but the Vietnamese government selectively distributed it while punishing complainants. • Bill Ackman's Pershing Square is offering approximately $64.4 billion to acquire Universal Music Group, which would then list on the New York Stock Exchange. • In 2024, 31% of American families were classified as upper middle class (earning $133k–$400k for a family of three), up from just 10% in 1979, according to the American Enterprise Institute. • Pakistan, alongside Egypt, Saudi Arabia, and Turkey, is pushing for de-escalation of the Iran conflict, while India has maintained silence despite chairing BRICS, which includes both Iran and the UAE as members.
+
+Keywords: US-Iran military conflict (5), Artificial intelligence (AI) capabilities and risks (5), China geopolitical competition and foreign policy (4), Data center opposition and legislation (3), Taiwan arms sales and diplomacy (3), Trump tariff and trade policy (3), US office real estate distress (2), Ransomware and cybersecurity threats (2), Anthropic Mythos AI model (2), Vietnam environmental disaster (Formosa) (2), Vietnam political consolidation (To Lam) (2), Adam Smith and free trade economics (1), Kyrgyzstan cryptocurrency corridor (1), US middle class income growth (1), Kansas City FIFA World Cup 2026 preparations (1), US Army battlefield AI (VictorBot) (1), KMT chair Beijing visit (1), Google AI Overviews accuracy (1)</description>
+      <pubDate>Thu, 09 Apr 2026 08:23:35 +0000</pubDate>
+      <guid isPermaLink="false">digest-2026-04-09</guid>
+      <link>https://unsubject.github.io/newsletter-digest</link>
+      <keywords>US-Iran military conflict, Artificial intelligence (AI) capabilities and risks, China geopolitical competition and foreign policy, Data center opposition and legislation, Taiwan arms sales and diplomacy, Trump tariff and trade policy, US office real estate distress, Ransomware and cybersecurity threats, Anthropic Mythos AI model, Vietnam environmental disaster (Formosa), Vietnam political consolidation (To Lam), Adam Smith and free trade economics, Kyrgyzstan cryptocurrency corridor, US middle class income growth, Kansas City FIFA World Cup 2026 preparations, US Army battlefield AI (VictorBot), KMT chair Beijing visit, Google AI Overviews accuracy</keywords>
+      <category>US-Iran military conflict</category>
+      <category>Artificial intelligence (AI) capabilities and risks</category>
+      <category>China geopolitical competition and foreign policy</category>
+      <category>Data center opposition and legislation</category>
+      <category>Taiwan arms sales and diplomacy</category>
+      <category>Trump tariff and trade policy</category>
+      <category>US office real estate distress</category>
+      <category>Ransomware and cybersecurity threats</category>
+      <category>Anthropic Mythos AI model</category>
+      <category>Vietnam environmental disaster (Formosa)</category>
+      <category>Vietnam political consolidation (To Lam)</category>
+      <category>Adam Smith and free trade economics</category>
+      <category>Kyrgyzstan cryptocurrency corridor</category>
+      <category>US middle class income growth</category>
+      <category>Kansas City FIFA World Cup 2026 preparations</category>
+      <category>US Army battlefield AI (VictorBot)</category>
+      <category>KMT chair Beijing visit</category>
+      <category>Google AI Overviews accuracy</category>
+    </item>
     <item>
       <title>Newsletter Digest — 2026-04-08</title>
       <author>Newsletter Digest Bot</author>
@@ -2974,20 +3005,6 @@ Opinion/Thesis: The author expresses strong criticism that Chinese University un
       <category>$16 million</category>
       <category>time data</category>
       <category>revenue prediction</category>
-    </item>
-    <item>
-      <title>Inside The Startup Making Chemicals From Sugar Instead Of Fossil Fuels [5/11]</title>
-      <author>This Week at YC &lt;info@ycombinator.com&gt;</author>
-      <description>Shepherd Insurance raised $42 million in Series B funding to provide insurance coverage for AI's physical layer infrastructure.</description>
-      <pubDate>Sun, 29 Mar 2026 20:25:29 +0000</pubDate>
-      <guid isPermaLink="false">19d3b462a53f27ef-4</guid>
-      <link>https://unsubject.github.io/newsletter-digest</link>
-      <keywords>Shepherd Insurance, Series B, $42 million, AI insurance, physical infrastructure</keywords>
-      <category>Shepherd Insurance</category>
-      <category>Series B</category>
-      <category>$42 million</category>
-      <category>AI insurance</category>
-      <category>physical infrastructure</category>
     </item>
   </channel>
 </rss>
