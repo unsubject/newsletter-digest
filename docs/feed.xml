@@ -5,7 +5,35 @@
     <link>https://unsubject.github.io/newsletter-digest</link>
     <description>Auto-summarised newsletter digest, powered by Claude Sonnet</description>
     <language>en</language>
-    <lastBuildDate>Sat, 11 Apr 2026 07:54:49 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 Apr 2026 08:05:55 +0000</lastBuildDate>
+    <item>
+      <title>Newsletter Digest — 2026-04-12</title>
+      <author>Newsletter Digest Bot</author>
+      <description>Executive Summary: This digest spans three distinct topics from April 2026. The most significant technology story is Anthropic's new AI model Claude Mythos, which has alarmed US financial regulators and bank executives due to its unprecedented ability to detect and exploit cybersecurity vulnerabilities, prompting an emergency meeting of major bank CEOs with Fed Chair Powell and Treasury Secretary Bessent. On the geopolitical front, a fragile US–Iran ceasefire is underway, with VP JD Vance heading to Pakistan for peace talks, while the war's economic toll is already visible in US inflation data reaching a two-year high of 3.3% in March. In Macau, the closure of the last satellite casino marks the end of an era, raising concerns that gaming profits are benefiting casino operators rather than ordinary residents. The Guardian's long reads touch on Russian citizenship renunciation, the exploitation of foreign students in the UK, and the lasting influence of extremist rabbi Meir Kahane on Israeli politics.
+
+Key Facts: • Anthropic's Claude Mythos AI model was distributed to only approximately 40 organizations, including major banks, due to concerns it is too powerful for public release (Morning Brew). • Fed Chair Jerome Powell and Treasury Secretary Scott Bessent convened an emergency meeting with CEOs of Bank of America, Citigroup, Goldman Sachs, Morgan Stanley, and Wells Fargo on Tuesday, April 7, 2026, regarding Claude Mythos (Morning Brew). • Security experts estimate that human teams discover about 100 critical cybersecurity flaws with no immediate fixes per year, while Claude Mythos can find 'thousands' (Morning Brew/Business Insider). • US consumer prices rose 3.3% in March 2026 year-over-year, the highest reading in two years, driven largely by rising gas prices from the Iran war (Morning Brew/BLS). • Core inflation (excluding food and energy) grew 0.2% in March 2026, compared to 0.9% overall growth (Morning Brew/BLS). • Artemis II's Integrity spacecraft splashed down safely off the coast of San Diego at 8:07pm ET on April 10, 2026, with astronauts Reid Wiseman, Christina Koch, Victor Glover, and Jeremy Hansen aboard (Morning Brew). • New York City's office vacancy rate fell to 13.5% in Q1 2026, down 2.2% from a year prior, with AI company leasing soaring, according to JLL research (Morning Brew). • NYC attracted 10% more early- and mid-career professionals from top schools than Florida in the past year, per JLL analysis of LinkedIn data (Morning Brew). • Apollo Global Management announced it is looking to add a second headquarters outside New York City, in Texas or Florida (Morning Brew). • Macau's last satellite casino, Ponte 16 (置地娛樂場), closed on December 30, 2025, ending the satellite casino era in the territory (Initium Media). • A Guardian long read examines how extremist rabbi Meir Kahane, who died 35 years ago, continues to influence the highest levels of Israeli government (The Guardian). • The Guardian Long Read Spring 2026 magazine is a 100-page publication available at the Guardian bookshop, with a launch event scheduled at BookBar in Chelsea on April 15, 2026 (The Guardian). • JD Vance traveled to Pakistan for US–Iran peace talks amid a fragile two-week ceasefire, though Iran demanded the release of its frozen assets and a ceasefire in Lebanon as preconditions (Morning Brew).
+
+Keywords: Anthropic Claude Mythos AI model (3), US–Iran war and ceasefire (2), cybersecurity and AI risk to banks (2), US inflation and consumer prices (2), Macau satellite casino closure (1), Artemis II moon mission splashdown (1), New York City business expansion under Mamdani (1), JD Vance Pakistan peace talks (1), Federal Reserve capital requirements (1), Meir Kahane influence on Israeli politics (1), Russian citizenship renunciation (1), Foreign students exploitation in UK (1), Guardian Long Read Magazine Spring 2026 (1), Palantir stock and Trump social media (1), Apollo Global Management second headquarters (1)</description>
+      <pubDate>Sun, 12 Apr 2026 08:05:55 +0000</pubDate>
+      <guid isPermaLink="false">digest-2026-04-12</guid>
+      <link>https://unsubject.github.io/newsletter-digest</link>
+      <keywords>Anthropic Claude Mythos AI model, US–Iran war and ceasefire, cybersecurity and AI risk to banks, US inflation and consumer prices, Macau satellite casino closure, Artemis II moon mission splashdown, New York City business expansion under Mamdani, JD Vance Pakistan peace talks, Federal Reserve capital requirements, Meir Kahane influence on Israeli politics, Russian citizenship renunciation, Foreign students exploitation in UK, Guardian Long Read Magazine Spring 2026, Palantir stock and Trump social media, Apollo Global Management second headquarters</keywords>
+      <category>Anthropic Claude Mythos AI model</category>
+      <category>US–Iran war and ceasefire</category>
+      <category>cybersecurity and AI risk to banks</category>
+      <category>US inflation and consumer prices</category>
+      <category>Macau satellite casino closure</category>
+      <category>Artemis II moon mission splashdown</category>
+      <category>New York City business expansion under Mamdani</category>
+      <category>JD Vance Pakistan peace talks</category>
+      <category>Federal Reserve capital requirements</category>
+      <category>Meir Kahane influence on Israeli politics</category>
+      <category>Russian citizenship renunciation</category>
+      <category>Foreign students exploitation in UK</category>
+      <category>Guardian Long Read Magazine Spring 2026</category>
+      <category>Palantir stock and Trump social media</category>
+      <category>Apollo Global Management second headquarters</category>
+    </item>
     <item>
       <title>Newsletter Digest — 2026-04-11</title>
       <author>Newsletter Digest Bot</author>
@@ -21,13 +49,17 @@ Keywords: US-Iran war and ceasefire (6), Strait of Hormuz disruption (5), China 
       <category>US-Iran war and ceasefire</category>
       <category>Strait of Hormuz disruption</category>
       <category>China energy security and oil imports</category>
-      <category>AI industry competition (OpenAI, Anthropic, Meta)</category>
+      <category>AI industry competition (OpenAI</category>
+      <category>Anthropic</category>
+      <category>Meta)</category>
       <category>Global economic impact / IMF growth forecast</category>
       <category>Artemis II moon mission</category>
       <category>Amazon AI capex spending</category>
       <category>Gen Z attitudes toward AI</category>
       <category>Hong Kong Hung Fuk Estate fire inquiry</category>
-      <category>China green energy dominance (wind, solar, batteries)</category>
+      <category>China green energy dominance (wind</category>
+      <category>solar</category>
+      <category>batteries)</category>
       <category>KMT-CCP meeting / Cross-strait relations</category>
       <category>Trump-Xi summit (delayed)</category>
       <category>Israel death penalty law</category>
@@ -3027,20 +3059,6 @@ Opinion/Thesis: The author expresses strong criticism that Chinese University un
       <category>Windows games</category>
       <category>kernel</category>
       <category>performance improvement</category>
-    </item>
-    <item>
-      <title>Inside The Startup Making Chemicals From Sugar Instead Of Fossil Fuels [8/11]</title>
-      <author>This Week at YC &lt;info@ycombinator.com&gt;</author>
-      <description>Zalos raised $3.6 million to deploy computer agents designed for the CFO's office to automate financial operations.</description>
-      <pubDate>Sun, 29 Mar 2026 20:25:29 +0000</pubDate>
-      <guid isPermaLink="false">19d3b462a53f27ef-7</guid>
-      <link>https://unsubject.github.io/newsletter-digest</link>
-      <keywords>Zalos, $3.6 million, computer agents, CFO automation, financial operations</keywords>
-      <category>Zalos</category>
-      <category>$3.6 million</category>
-      <category>computer agents</category>
-      <category>CFO automation</category>
-      <category>financial operations</category>
     </item>
   </channel>
 </rss>
