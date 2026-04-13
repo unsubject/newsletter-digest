@@ -5,7 +5,35 @@
     <link>https://unsubject.github.io/newsletter-digest</link>
     <description>Auto-summarised newsletter digest, powered by Claude Sonnet</description>
     <language>en</language>
-    <lastBuildDate>Sun, 12 Apr 2026 08:05:55 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Apr 2026 09:05:30 +0000</lastBuildDate>
+    <item>
+      <title>Newsletter Digest — 2026-04-13</title>
+      <author>Newsletter Digest Bot</author>
+      <description>Executive Summary: This digest spans six newsletters covering technology, finance, and geopolitical trade topics. The dominant theme is the evolution of AI and chatbots: the WSJ explores how AI assistants build detailed personal dossiers on users, while YC highlights new AI-focused startups and partner appointments, and Hacker News surfaces ongoing debates about AI usability and security. On the investing side, Morning Brew's Investing Brew provides a deep dive into Gen Z's investment habits—driven by finfluencers, speculative assets, and app-based platforms—painting a picture of a generation turning to crypto, prediction markets, and day trading amid housing unaffordability. From a commodity and trade perspective, a Chinese-language Patreon newsletter (中環十一少) flags China's imminent ban on sulfuric acid exports (May–December, excluding electronic-grade), which Morgan Stanley warns could squeeze mining operations in Indonesia and Chile. Meanwhile, Y Combinator announces Harshita Arora as its newest General Partner, notable for being the youngest visiting partner in YC's history, and a Canadian-life Patreon creator covers the aftermath of a skylight incident in Canada. These threads connect around broader anxieties about technological disruption, financial system trust, and geopolitical supply-chain weaponization.
+
+Key Facts: • China is banning sulfuric acid exports from May to December (excluding electronic-grade), according to the 中環十一少 Patreon newsletter, with Morgan Stanley warning this could disrupt mining in Indonesia and Chile. • Harshita Arora is joining Y Combinator as a General Partner; she was previously the youngest visiting partner in YC's history since the Summer 2025 batch. • Arora dropped out of school at 15, built a crypto portfolio app acquired before age 16, and co-founded AtoB (YC S20), a Series-C company serving over 30,000 trucking fleets across the US. • Over half of Americans now use generative AI regularly for personal reasons, according to the Brookings Institution, as cited in the WSJ Technology newsletter. • Jonathan Gavalas, a 36-year-old man, died after exchanging 4,732 messages with Google's Gemini chatbot over 56 days, in a relationship that became intense and eventually 'went haywire,' per the WSJ. • OpenAI and Anthropic are racing toward potentially record-breaking IPOs by end of 2026, but their Achilles' heel is the soaring cost of training new AI models, per the WSJ. • Meta's stock jumped 9% after releasing Spark, a new model from its Superintelligence Labs, following losses in social-media court cases. • The share of 26-year-olds investing in non-401(k) accounts after turning 22 jumped from 8% in 2015 to 40% as of May 2025, per JPMorgan Chase Institute data cited by Morning Brew. • 30% of Gen Z respondents in a 2024 World Economic Forum survey said they began investing before entering the workforce, versus just 6% of baby boomers. • Almost 70% of Gen Zers said in 2025 that they had been influenced by a financial trend seen online, compared to 51% of millennials and 27% of Gen Xers, per H&amp;R Block. • In 2025, 17% of American investors owned crypto, up from 2% in 2018, according to a Gallup poll cited by Morning Brew. • Retail investors' share of stock options trading has hovered between 40% and 50% in recent years, up from about 35% pre-pandemic, per NYSE data cited by Morning Brew. • MrBeast's company recently bought a teen-focused banking app that has explored launching a crypto feature, drawing concern from Senator Elizabeth Warren. • Mastra raised a $22 million Series A to help developers build AI agents, per YC community news. • A 23-year-old's AI data company has already hit a $100 million run rate, according to Forbes coverage highlighted in the YC newsletter.
+
+Keywords: AI chatbots and personal data (3), Gen Z investing behaviour (2), Y Combinator / startup ecosystem (2), Finfluencers and social media investing (2), China export restrictions / sulfuric acid ban (1), OpenAI and Anthropic IPOs (2), Cryptocurrency / crypto adoption (3), Speculative investing / prediction markets (2), Meta / Spark AI model (2), Harshita Arora / YC General Partner (1), Day trading risks and stress (1), Housing affordability and investment shift (2), AI safety and security (2), Patreon creator newsletters (3), Morgan Stanley mining supply chain warning (1)</description>
+      <pubDate>Mon, 13 Apr 2026 09:05:30 +0000</pubDate>
+      <guid isPermaLink="false">digest-2026-04-13</guid>
+      <link>https://unsubject.github.io/newsletter-digest</link>
+      <keywords>AI chatbots and personal data, Gen Z investing behaviour, Y Combinator / startup ecosystem, Finfluencers and social media investing, China export restrictions / sulfuric acid ban, OpenAI and Anthropic IPOs, Cryptocurrency / crypto adoption, Speculative investing / prediction markets, Meta / Spark AI model, Harshita Arora / YC General Partner, Day trading risks and stress, Housing affordability and investment shift, AI safety and security, Patreon creator newsletters, Morgan Stanley mining supply chain warning</keywords>
+      <category>AI chatbots and personal data</category>
+      <category>Gen Z investing behaviour</category>
+      <category>Y Combinator / startup ecosystem</category>
+      <category>Finfluencers and social media investing</category>
+      <category>China export restrictions / sulfuric acid ban</category>
+      <category>OpenAI and Anthropic IPOs</category>
+      <category>Cryptocurrency / crypto adoption</category>
+      <category>Speculative investing / prediction markets</category>
+      <category>Meta / Spark AI model</category>
+      <category>Harshita Arora / YC General Partner</category>
+      <category>Day trading risks and stress</category>
+      <category>Housing affordability and investment shift</category>
+      <category>AI safety and security</category>
+      <category>Patreon creator newsletters</category>
+      <category>Morgan Stanley mining supply chain warning</category>
+    </item>
     <item>
       <title>Newsletter Digest — 2026-04-12</title>
       <author>Newsletter Digest Bot</author>
@@ -3045,20 +3073,6 @@ Opinion/Thesis: The author expresses strong criticism that Chinese University un
       <category>message scanning</category>
       <category>photo scanning</category>
       <category>surveillance</category>
-    </item>
-    <item>
-      <title>Inside The Startup Making Chemicals From Sugar Instead Of Fossil Fuels [9/11]</title>
-      <author>This Week at YC &lt;info@ycombinator.com&gt;</author>
-      <description>Wine 11 has been rewritten to significantly improve how Linux runs Windows games by implementing changes at the kernel level, delivering massive speed gains.</description>
-      <pubDate>Sun, 29 Mar 2026 20:25:29 +0000</pubDate>
-      <guid isPermaLink="false">19d3b462a53f27ef-8</guid>
-      <link>https://unsubject.github.io/newsletter-digest</link>
-      <keywords>Wine 11, Linux, Windows games, kernel, performance improvement</keywords>
-      <category>Wine 11</category>
-      <category>Linux</category>
-      <category>Windows games</category>
-      <category>kernel</category>
-      <category>performance improvement</category>
     </item>
   </channel>
 </rss>
