@@ -5,7 +5,35 @@
     <link>https://unsubject.github.io/newsletter-digest</link>
     <description>Auto-summarised newsletter digest, powered by Claude Sonnet</description>
     <language>en</language>
-    <lastBuildDate>Tue, 14 Apr 2026 08:47:57 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 15 Apr 2026 08:48:46 +0000</lastBuildDate>
+    <item>
+      <title>Newsletter Digest — 2026-04-15</title>
+      <author>Newsletter Digest Bot</author>
+      <description>Executive Summary: Today's digest spans several major themes: a high-profile Apple trade secrets lawsuit against leaker Jon Prosser over the early disclosure of iOS 26's 'Liquid Glass' design system; geopolitical and economic tensions involving the US, Iran, and China; Meta's AI strategy including a photorealistic AI clone of Mark Zuckerberg; and a Hollywood backlash against the $111 billion Paramount-Warner Bros. merger. Separately, Dialogue China's briefing covers CCP cultural authoritarianism around 'masculine' aesthetics, structural weaknesses in Chinese domestic consumption, demographic decline in Jiangsu province, and shifting strategies for Chinese automakers amid US tariff pressures. Patreon is launching new creator discovery tools including a short-form 'Quips' feature, while Public Domain Review is debuting a new pocket-book series. Several Morning Brew verticals (Tech, Retail, Marketing, IT) were unreadable due to email rendering issues.
+
+Key Facts: • Apple filed a lawsuit on July 17th against YouTuber Jon Prosser and Michael Ramacciotti in a California court, alleging a coordinated scheme to steal trade secrets from an Apple development phone. • Prosser's first iOS 26 leak video, titled 'Here's your very first look at iOS 19,' debuted on January 17th, 2025, six months before Apple's WWDC reveal. • Apple's new iOS design system, unveiled at WWDC in June, is called 'Liquid Glass' and was ultimately released as iOS 26, not iOS 19 as Prosser originally reported. • Over 1,000 Hollywood creators, including Ben Stiller, Joaquin Phoenix, Kristen Stewart, and Tiffany Haddish, signed a letter expressing 'unequivocal opposition' to the $111 billion Paramount-Warner Bros. Discovery merger. • The Paramount-Warner merger would reduce the number of US major film studios to just four, according to the protest letter. • Hollywood industry jobs have dropped by 30% since late 2022, according to US government data. • Goldman Sachs reported Q1 profit of $5.63 billion, up 19% year-on-year, its second-best quarter ever for overall profit and revenue, though its stock fell nearly 2%. • Meta is training a photorealistic AI clone of Mark Zuckerberg on his mannerisms, tone, and public statements, according to the Financial Times. • Meta last week launched MuseSpark, its latest AI model, and announced an additional $21 billion allocation for AI cloud infrastructure with CoreWeave. • The US began a blockade of ships from Iranian ports in the Strait of Hormuz, with Trump threatening that Iranian ships would be 'immediately ELIMINATED.' • Jiangsu province recorded its first population decline since the reform era in 2025, with resident population falling by 80,000; births totaled only 358,000 versus 665,000 deaths. • The CCP's People's Liberation Army Daily account 'Jun Zhengping' criticized the portrayal of a 'foundation makeup general' in the Chinese drama Zhu Yu, calling for works 'rich in masculine energy.' • Under US tariff pressure, Chinese automakers are shifting from product export to integrating idle global manufacturing capacity, with companies like Chery, BAIC, XPeng, Leapmotor, Geely, and BYD deepening cooperation with Western firms. • Public Domain Review is launching 'PDR Press Minis,' pocket-sized public domain books priced at $9 each, with a pre-sale offering 25% off until April 29th. • The 'annoyance economy'—covering spam, robocalls, hidden fees, and difficult subscription cancellations—costs consumers an estimated $165 billion, according to a report cited by the New York Times.
+
+Keywords: Apple iOS 26 / Liquid Glass leak lawsuit (1), China CCP cultural censorship / masculinity debate (2), China demographic decline / population negative growth (2), Chinese automakers / US tariffs / global capacity sharing (2), Meta AI strategy / AI clone of Zuckerberg (2), Paramount-Warner Bros. merger / Hollywood opposition (1), US-Iran tensions / Strait of Hormuz blockade (1), Goldman Sachs Q1 earnings (1), China weak consumer spending / income distribution (2), Patreon Discovery / Quips feature (1), Public Domain Review Press Minis books (1), McDonald's energy drinks / beverage market expansion (1), Annoyance economy / junk fees / robocalls (1), China young people geographic arbitrage / big city exodus (2), Trump / Pope Leo XIV controversy (1)</description>
+      <pubDate>Wed, 15 Apr 2026 08:48:46 +0000</pubDate>
+      <guid isPermaLink="false">digest-2026-04-15</guid>
+      <link>https://unsubject.github.io/newsletter-digest</link>
+      <keywords>Apple iOS 26 / Liquid Glass leak lawsuit, China CCP cultural censorship / masculinity debate, China demographic decline / population negative growth, Chinese automakers / US tariffs / global capacity sharing, Meta AI strategy / AI clone of Zuckerberg, Paramount-Warner Bros. merger / Hollywood opposition, US-Iran tensions / Strait of Hormuz blockade, Goldman Sachs Q1 earnings, China weak consumer spending / income distribution, Patreon Discovery / Quips feature, Public Domain Review Press Minis books, McDonald's energy drinks / beverage market expansion, Annoyance economy / junk fees / robocalls, China young people geographic arbitrage / big city exodus, Trump / Pope Leo XIV controversy</keywords>
+      <category>Apple iOS 26 / Liquid Glass leak lawsuit</category>
+      <category>China CCP cultural censorship / masculinity debate</category>
+      <category>China demographic decline / population negative growth</category>
+      <category>Chinese automakers / US tariffs / global capacity sharing</category>
+      <category>Meta AI strategy / AI clone of Zuckerberg</category>
+      <category>Paramount-Warner Bros. merger / Hollywood opposition</category>
+      <category>US-Iran tensions / Strait of Hormuz blockade</category>
+      <category>Goldman Sachs Q1 earnings</category>
+      <category>China weak consumer spending / income distribution</category>
+      <category>Patreon Discovery / Quips feature</category>
+      <category>Public Domain Review Press Minis books</category>
+      <category>McDonald's energy drinks / beverage market expansion</category>
+      <category>Annoyance economy / junk fees / robocalls</category>
+      <category>China young people geographic arbitrage / big city exodus</category>
+      <category>Trump / Pope Leo XIV controversy</category>
+    </item>
     <item>
       <title>Newsletter Digest — 2026-04-14</title>
       <author>Newsletter Digest Bot</author>
@@ -3079,19 +3107,6 @@ Opinion/Thesis: The author expresses strong criticism that Chinese University un
       <category>addictive app design</category>
       <category>social media litigation</category>
       <category>Mark Zuckerberg</category>
-    </item>
-    <item>
-      <title>Inside The Startup Making Chemicals From Sugar Instead Of Fossil Fuels [11/11]</title>
-      <author>This Week at YC &lt;info@ycombinator.com&gt;</author>
-      <description>OpenAI's Sora, a video generation tool, is being discontinued.</description>
-      <pubDate>Sun, 29 Mar 2026 20:25:29 +0000</pubDate>
-      <guid isPermaLink="false">19d3b462a53f27ef-10</guid>
-      <link>https://unsubject.github.io/newsletter-digest</link>
-      <keywords>Sora, OpenAI, video generation, discontinuation</keywords>
-      <category>Sora</category>
-      <category>OpenAI</category>
-      <category>video generation</category>
-      <category>discontinuation</category>
     </item>
   </channel>
 </rss>
