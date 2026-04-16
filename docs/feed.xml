@@ -5,7 +5,38 @@
     <link>https://unsubject.github.io/newsletter-digest</link>
     <description>Auto-summarised newsletter digest, powered by Claude Sonnet</description>
     <language>en</language>
-    <lastBuildDate>Wed, 15 Apr 2026 08:48:46 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2026 08:49:51 +0000</lastBuildDate>
+    <item>
+      <title>Newsletter Digest — 2026-04-16</title>
+      <author>Newsletter Digest Bot</author>
+      <description>Executive Summary: The dominant global story across these newsletters is the ongoing US-Iran military conflict (Operation Epic Fury) and its wide-ranging geopolitical and economic consequences. Iran's closure of the Strait of Hormuz has triggered energy supply shocks across Asia—devastating South Korea's KOSPI index by 18% and threatening semiconductor supply chains—while US-Iran ceasefire talks in Pakistan collapsed without agreement and a fragile ceasefire holds. A suspicious $950M oil futures trade placed hours before Trump's April 7 ceasefire announcement has prompted congressional calls for SEC/CFTC investigation. On the financial front, JPMorgan Chase posted record Q1 revenues of nearly $50B, and Jamie Dimon warned of 'an increasingly complex set of risks' ahead, including geopolitical tensions and energy price volatility. In geopolitics, the Global Taiwan Institute launched a bipartisan US-Taiwan Task Force, China's Wang Yi made a surprise visit to North Korea on April 9–10, and Indonesia signed a new Major Defense Cooperation Partnership with the US. Technology themes include AI-assisted chip design startups challenging Nvidia's dominance, media organizations blocking the Wayback Machine to prevent AI training on their content, and debates about autonomous systems and nuclear weapons. Domestically in the US, IRS staffing cuts from 102,000 to 74,000 employees are encouraging more taxpayers to misreport, while JPMorgan's Q1 earnings and Lockheed Martin's $4.76B PAC-3 missile contract highlight war-driven market dynamics.
+
+Key Facts: • South Korea's KOSPI stock index fell over 18% in the first two trading days after Operation Epic Fury began, wiping out $553 billion in market value (Pacific Forum). • South Korea imports 84% of its total energy supply, with 70% of its crude oil transiting through the Strait of Hormuz (Pacific Forum). • Traders placed roughly $950M on declining oil prices hours before Trump announced a US-Iran ceasefire on April 7; WTI then fell 16.4% to $94.41, its largest one-day drop since 2020 (Quiver Quantitative). • Rep. Ritchie Torres called the $950M oil trade 'potentially the largest instance of insider trading in history' and sent a second letter demanding a joint SEC/CFTC investigation (Quiver Quantitative). • JPMorgan Chase Q1 revenue grew 10% to nearly $50 billion, with trading fees hitting a record high and M&amp;A advising fees surging 82% (Morning Brew). • Lockheed Martin landed a $4.76 billion PAC-3 missile contract for accelerated production of the Patriot Advanced Capability-3 system (Quiver Quantitative). • Billionaire Kenneth Dart placed a $48M total return swap on Flutter; Rep. Josh Gottheimer invested $750K+ in MSFT call options while co-chairing the AI Commission (Quiver Quantitative). • The IRS started 2025 with 102,000 employees but ended the year with about 74,000 after cuts; IRS completed only 497,541 audits last year, a historic low (Morning Brew). • IRS budget cuts may save $46 billion in federal spending over a decade but could cost $643 billion in lost revenue collections, per The Budget Lab at Yale (Morning Brew). • 61% of South Koreans oppose sending troops to support Operation Epic Fury, and 81% prefer their government maintain public neutrality on the Iran conflict (Pacific Forum). • China's Foreign Minister Wang Yi made a surprise visit to North Korea on April 9–10, continuing a warming trend in China–North Korea relations (The Diplomat). • The Global Taiwan Institute announced a bipartisan US-Taiwan Task Force chaired by former National Security Advisor Robert C. O'Brien and vice-chaired by former Asst. Secretary of Defense Ely Ratner (Global Taiwan Institute). • Indonesia and the US signed a new Major Defense Cooperation Partnership on April 13; on the same day, President Prabowo Subianto was in Moscow meeting Putin (The Diplomat). • Fed chair nominee Kevin Warsh is worth between $135M and $226M, while his wife Jane Lauder has a net worth of approximately $1.9 billion per Forbes (Morning Brew). • 23 major news organizations including USA Today and the New York Times are blocking the Internet Archive's Wayback Machine, citing AI training concerns (Morning Brew).
+
+Keywords: US-Iran conflict / Operation Epic Fury (8), Strait of Hormuz closure / energy shock (7), South Korea economic and alliance impact (3), JPMorgan Chase Q1 earnings / Jamie Dimon (3), AI / artificial intelligence developments (4), US-China relations / Taiwan security (3), Insider trading / congressional stock trading (2), Lockheed Martin defense contracts (2), IRS funding cuts / tax enforcement (2), Ceasefire negotiations / US-Iran diplomacy (5), China–North Korea relations / Wang Yi (2), Indonesia–US defense partnership (2), Autonomous weapons / nuclear AI governance (2), Nvidia / AI chip design (2), Wayback Machine / AI training copyright (2), Hong Kong / China domestic politics (3), US real estate / home builders cost-cutting (1), Federal Reserve / Kevin Warsh nomination (1)</description>
+      <pubDate>Thu, 16 Apr 2026 08:49:51 +0000</pubDate>
+      <guid isPermaLink="false">digest-2026-04-16</guid>
+      <link>https://unsubject.github.io/newsletter-digest</link>
+      <keywords>US-Iran conflict / Operation Epic Fury, Strait of Hormuz closure / energy shock, South Korea economic and alliance impact, JPMorgan Chase Q1 earnings / Jamie Dimon, AI / artificial intelligence developments, US-China relations / Taiwan security, Insider trading / congressional stock trading, Lockheed Martin defense contracts, IRS funding cuts / tax enforcement, Ceasefire negotiations / US-Iran diplomacy, China–North Korea relations / Wang Yi, Indonesia–US defense partnership, Autonomous weapons / nuclear AI governance, Nvidia / AI chip design, Wayback Machine / AI training copyright, Hong Kong / China domestic politics, US real estate / home builders cost-cutting, Federal Reserve / Kevin Warsh nomination</keywords>
+      <category>US-Iran conflict / Operation Epic Fury</category>
+      <category>Strait of Hormuz closure / energy shock</category>
+      <category>South Korea economic and alliance impact</category>
+      <category>JPMorgan Chase Q1 earnings / Jamie Dimon</category>
+      <category>AI / artificial intelligence developments</category>
+      <category>US-China relations / Taiwan security</category>
+      <category>Insider trading / congressional stock trading</category>
+      <category>Lockheed Martin defense contracts</category>
+      <category>IRS funding cuts / tax enforcement</category>
+      <category>Ceasefire negotiations / US-Iran diplomacy</category>
+      <category>China–North Korea relations / Wang Yi</category>
+      <category>Indonesia–US defense partnership</category>
+      <category>Autonomous weapons / nuclear AI governance</category>
+      <category>Nvidia / AI chip design</category>
+      <category>Wayback Machine / AI training copyright</category>
+      <category>Hong Kong / China domestic politics</category>
+      <category>US real estate / home builders cost-cutting</category>
+      <category>Federal Reserve / Kevin Warsh nomination</category>
+    </item>
     <item>
       <title>Newsletter Digest — 2026-04-15</title>
       <author>Newsletter Digest Bot</author>
@@ -3093,20 +3124,6 @@ Opinion/Thesis: The author expresses strong criticism that Chinese University un
       <category>Snap</category>
       <category>social media regulation</category>
       <category>summer trial</category>
-    </item>
-    <item>
-      <title>Meta the Defendant [1/11]</title>
-      <author>WSJ Technology &lt;access@interactive.wsj.com&gt;</author>
-      <description>Meta Platforms lost two landmark trials in one week: a New Mexico case for failing to protect young people from online dangers, and a second suit in another state accusing it of designing addictive and harmful apps. YouTube was also found liable in the latter case. Both companies plan to appeal, but legal experts warn these precedents could open social-media companies to significant litigation and force major product design changes.</description>
-      <pubDate>Sun, 29 Mar 2026 11:01:32 +0000</pubDate>
-      <guid isPermaLink="false">19d3a1d6b29e9cf0-0</guid>
-      <link>https://unsubject.github.io/newsletter-digest</link>
-      <keywords>Meta lawsuit, youth protection, addictive app design, social media litigation, Mark Zuckerberg</keywords>
-      <category>Meta lawsuit</category>
-      <category>youth protection</category>
-      <category>addictive app design</category>
-      <category>social media litigation</category>
-      <category>Mark Zuckerberg</category>
     </item>
   </channel>
 </rss>
